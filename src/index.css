@@ -16,10 +16,3 @@
   --dark-gray: #707070;
   --black: #18191a;
 }
-
-* {
-  box-sizing: border-box;
-}
-body {
-  margin: 0;
-}
