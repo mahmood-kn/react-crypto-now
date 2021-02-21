@@ -9,7 +9,7 @@ const HomePage = (props) => {
   }, []);
   return (
     <div>
-      <Navbar />
+      <Navbar homepage />
       <HomeMainSection />
       <Table />
     </div>

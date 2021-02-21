@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classes from './Navbar.module.css';
 
-const Navbar = () => {
+const Navbar = ({ homepage }) => {
   return (
     <div className='bg-transparent py-5'>
       <div className='container mx-auto text-white flex justify-between items-center'>
@@ -21,14 +21,17 @@ const Navbar = () => {
             className={`px-3 inline-block ${classes.HoverEffect}`}>
             Converter
           </NavLink>
-          <select className=' px-3 bg-transparent outline-none cursor-pointer'>
-            <option value='USD' className='text-black'>
-              USD
-            </option>
-            <option value='IRT' className='text-black'>
-              IRT
-            </option>
-          </select>
+          {homepage && (
+            <select className=' px-3 bg-transparent outline-none cursor-pointer'>
+              <option value='USD' className='text-black'>
+                USD
+              </option>
+              <option value='IRT' className='text-black'>
+                IRT
+              </option>
+            </select>
+          )}
+
           <select className=' px-3 bg-transparent outline-none cursor-pointer'>
             <option value='EN' className='text-black'>
               EN
