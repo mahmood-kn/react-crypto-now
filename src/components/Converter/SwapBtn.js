@@ -1,10 +1,9 @@
 import React from 'react';
-import change from '../../assets/img/change.png';
 
 const SwapBtn = () => {
   return (
     <button className='focus:outline-none'>
-      <img src={change} alt='change' className='w-14 my-3' />
+      <span className='material-icons text-white text-6xl my-3'>cached</span>
     </button>
   );
 };

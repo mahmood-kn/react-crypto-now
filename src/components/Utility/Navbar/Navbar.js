@@ -4,9 +4,9 @@ import classes from './Navbar.module.css';
 import Currency from '../Currency';
 import Lang from './Lang';
 
-const Navbar = ({ homepage }) => {
+const Navbar = ({ homepage, cryptoPage }) => {
   return (
-    <div className='bg-transparent py-5'>
+    <div className={`${cryptoPage ? 'bg-gray-800' : 'bg-transparent'} py-5`}>
       <div className='container mx-auto text-white flex justify-between items-center'>
         <div className='font-bold text-3xl'>CryptoNow</div>
         <div>
