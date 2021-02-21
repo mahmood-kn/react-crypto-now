@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import classes from './Navbar.module.css';
 
 const Navbar = () => {
   return (
@@ -6,12 +8,19 @@ const Navbar = () => {
       <div className='container mx-auto text-white flex justify-between items-center'>
         <div className='font-bold text-3xl'>CryptoNow</div>
         <div>
-          <a href='$#' className='px-3'>
+          <NavLink
+            exact
+            activeClassName={classes.MyActive}
+            to='/'
+            className={`px-3 inline-block ${classes.HoverEffect}`}>
             Home
-          </a>
-          <a href='$#' className='px-3'>
+          </NavLink>
+          <NavLink
+            to='/converter'
+            activeClassName={classes.MyActive}
+            className={`px-3 inline-block ${classes.HoverEffect}`}>
             Converter
-          </a>
+          </NavLink>
           <select className=' px-3 bg-transparent outline-none cursor-pointer'>
             <option value='USD' className='text-black'>
               USD

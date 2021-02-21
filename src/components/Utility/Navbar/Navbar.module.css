@@ -1,0 +1,13 @@
+.HoverEffect::after {
+  display: block;
+  content: '';
+  border-bottom: solid 3px var(--orange);
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+  transform-origin: 0 0;
+}
+
+.HoverEffect:hover:after,
+.HoverEffect.MyActive:after {
+  transform: scaleX(1);
+}
