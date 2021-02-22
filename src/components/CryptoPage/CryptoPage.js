@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../Utility/Navbar/Navbar';
 import Logo from '../Utility/Logo';
 import Name from '../Utility/Name';
@@ -12,12 +12,12 @@ import * as actions from '../../store/actions';
 const CryptoPage = ({ currency, loadCurrency, match, apiData }) => {
   useEffect(() => {
     loadCurrency(match.params.name);
-    // if (currency === null) {
-    // }
-  }, [match.params.name]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
-      {console.log(currency)}
+      {/* {console.log(currency)} */}
       <Navbar cryptoPage />
       <div className='flex flex-col w-full container mx-auto'>
         <div className='flex py-10 items-center'>
