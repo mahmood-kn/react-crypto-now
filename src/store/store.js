@@ -8,6 +8,7 @@ const middleware = [thunk];
 const initialState = {
   apiData: null,
   error: null,
+  currentCurrency: null,
 };
 
 const store = createStore(

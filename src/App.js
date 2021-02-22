@@ -16,7 +16,7 @@ function App({ onLoadApi }) {
     <Router>
       <Route path='/' exact component={HomePage} />
       <Route path='/converter' exact component={Converter} />
-      <Route path='/bitcoin' exact component={CryptoPage} />
+      <Route path='/currency/:name' exact component={CryptoPage} />
     </Router>
   );
 }

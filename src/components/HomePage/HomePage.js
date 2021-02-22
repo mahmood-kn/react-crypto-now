@@ -4,9 +4,9 @@ import HomeMainSection from './HomeMainSection';
 import Table from './Table';
 
 const HomePage = (props) => {
-  useEffect(() => {
-    console.log(props);
-  }, []);
+  // useEffect(() => {
+  //   console.log(props);
+  // }, []);
   return (
     <div>
       <Navbar homepage />

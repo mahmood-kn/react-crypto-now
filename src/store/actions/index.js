@@ -1,1 +1,1 @@
-export { loadApi } from './crypto';
+export { loadApi, setCurrentCurrency, loadCurrencyPage } from './crypto';

@@ -12,6 +12,11 @@ const cryptoReducer = (state, action) => {
         ...state,
         error: action.payload,
       };
+    case types.SET_CURRENT_CURRENCY:
+      return {
+        ...state,
+        currentCurrency: action.payload,
+      };
     default:
       return state;
   }
