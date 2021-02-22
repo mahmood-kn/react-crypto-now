@@ -5,7 +5,10 @@ import cryptoReducer from './reducers/cryptoReducer';
 
 const middleware = [thunk];
 
-const initialState = {};
+const initialState = {
+  apiData: null,
+  error: null,
+};
 
 const store = createStore(
   cryptoReducer,
