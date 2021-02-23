@@ -1,14 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import Converter from './components/Converter/Converter';
 import CryptoPage from './components/CryptoPage/CryptoPage';
 
-function App({}) {
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+function App() {
   return (
     <Router>
       <Route path='/' exact component={HomePage} />

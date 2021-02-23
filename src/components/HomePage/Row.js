@@ -1,14 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Name from '../Utility/Name';
 import Logo from '../Utility/Logo';
 import Change from '../Utility/Change';
 import Price from '../Utility/Price';
 
 const Row = ({ data, onClickHandler }) => {
-  useEffect(() => {
-    // console.log(data, history);
-  }, []);
-
   return (
     <div
       className=' bg-white p-8 flex items-center justify-between border-b border-gray-300 cursor-pointer'

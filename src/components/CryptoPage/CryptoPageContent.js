@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import Navbar from '../Utility/Navbar/Navbar';
+import React from 'react';
 import Logo from '../Utility/Logo';
 import Name from '../Utility/Name';
 import Price from '../Utility/Price';
@@ -8,7 +7,7 @@ import Details from './Details';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const CryptoPage = ({ currency, loadCurrency, match, loading }) => {
+const CryptoPage = ({ currency }) => {
   return (
     <>
       {currency !== null && (

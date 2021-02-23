@@ -13,7 +13,6 @@ export const loadApi = () => {
           ','
         )}&interval=1d&convert=USD&per-page=100&page=1`
       );
-      // const data = await res.json();
       dispatch(saveLoadApi(res.data));
     } catch (err) {
       console.log(err);
@@ -29,11 +28,9 @@ export const loadCurrencyPage = (symbol) => {
       const res = await axios(
         `https://api.nomics.com/v1/currencies/ticker?key=${key}&ids=${symbol}&interval=1d&convert=USD&per-page=100&page=1`
       );
-      // const data = await res.json();
       dispatch(setCurrentCurrency(res.data[0]));
     } catch (err) {
       console.log(err);
-      // dispatch(loadApiErr(err));
     }
   };
 };

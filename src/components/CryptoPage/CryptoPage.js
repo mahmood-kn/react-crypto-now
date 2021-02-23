@@ -9,7 +9,6 @@ import Skeleton from '@yisheng90/react-loading';
 const CryptoPage = ({ currency, loadCurrency, match, loading }) => {
   useEffect(() => {
     loadCurrency(match.params.name);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
