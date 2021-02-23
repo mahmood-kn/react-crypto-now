@@ -9,6 +9,7 @@ const initialState = {
   apiData: null,
   error: null,
   currentCurrency: null,
+  loading: false,
 };
 
 const store = createStore(

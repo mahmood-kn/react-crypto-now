@@ -6,16 +6,24 @@ const cryptoReducer = (state, action) => {
       return {
         ...state,
         apiData: action.payload,
+        loading: false,
       };
     case types.LOAD_API_ERR:
       return {
         ...state,
         error: action.payload,
+        loading: false,
       };
     case types.SET_CURRENT_CURRENCY:
       return {
         ...state,
         currentCurrency: action.payload,
+        loading: false,
+      };
+    case types.SET_LOADING:
+      return {
+        ...state,
+        loading: true,
       };
     default:
       return state;

@@ -2,8 +2,9 @@ import React from 'react';
 import Row from './Row';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import Skeleton from '@yisheng90/react-loading';
 
-const Table = ({ apiData, history }) => {
+const Table = ({ apiData, history, loading }) => {
   const clickHandler = (name) => {
     history.push({
       pathname: '/currency/' + name,
@@ -19,14 +20,18 @@ const Table = ({ apiData, history }) => {
         <div>Change</div>
         <div>Weekly Chart</div>
       </div>
-      {apiData !== null &&
+      {!loading ? (
+        apiData !== null &&
         apiData.map((cur, i) => (
           <Row
             key={cur.id}
             data={cur}
             onClickHandler={() => clickHandler(cur.symbol)}
           />
-        ))}
+        ))
+      ) : (
+        <Skeleton height={80} rows={6} />
+      )}
     </div>
   );
 };
@@ -34,6 +39,7 @@ const Table = ({ apiData, history }) => {
 const mapStateToProps = (state) => {
   return {
     apiData: state.apiData,
+    loading: state.loading,
   };
 };
 

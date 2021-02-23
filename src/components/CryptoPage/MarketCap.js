@@ -7,11 +7,11 @@ const MarketCap = ({ marketCap, marketCapPct }) => {
     // console.log(marketCapDetail);
   }, []);
   return (
-    <div className='flex flex-col '>
+    <div className='flex flex-col  items-start '>
       <span className='uppercase text-sm text-gray-500 '>market cap</span>
       <span className='my-2'>${makeFriendly(marketCap)}</span>
       <Change
-        className='text-sm pl-3'
+        className='text-sm '
         iconClass='text-base'
         ChangePct={marketCapPct}
       />

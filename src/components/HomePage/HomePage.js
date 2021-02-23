@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import Navbar from '../Utility/Navbar/Navbar';
 import HomeMainSection from './HomeMainSection';
+import * as actions from '../../store/actions';
 import Table from './Table';
+import { connect } from 'react-redux';
 
-const HomePage = (props) => {
-  // useEffect(() => {
-  //   console.log(props);
-  // }, []);
+const HomePage = ({ onLoadApi }) => {
+  useEffect(() => {
+    onLoadApi();
+  }, []);
   return (
     <div>
       <Navbar homepage />
@@ -16,4 +18,10 @@ const HomePage = (props) => {
   );
 };
 
-export default HomePage;
+const mapDispatchToProps = (dipatch) => {
+  return {
+    onLoadApi: () => dipatch(actions.loadApi()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(HomePage);

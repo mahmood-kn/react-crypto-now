@@ -4,14 +4,10 @@ import { makeFriendly } from '../../utility/utilsFuncs';
 
 const Volume = ({ volume, volumePct }) => {
   return (
-    <div className='flex flex-col '>
+    <div className='flex flex-col items-start'>
       <span className='uppercase text-sm text-gray-500 '>volume</span>
       <span className='my-2'>${makeFriendly(volume)}</span>
-      <Change
-        className='text-sm pl-3'
-        iconClass='text-base'
-        ChangePct={volumePct}
-      />
+      <Change className='text-sm' iconClass='text-base' ChangePct={volumePct} />
     </div>
   );
 };

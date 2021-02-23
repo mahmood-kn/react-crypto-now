@@ -4,12 +4,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import Converter from './components/Converter/Converter';
 import CryptoPage from './components/CryptoPage/CryptoPage';
-import { connect } from 'react-redux';
-import * as actions from './store/actions';
 
-function App({ onLoadApi }) {
+function App({}) {
   useEffect(() => {
-    onLoadApi();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
@@ -21,10 +18,4 @@ function App({ onLoadApi }) {
   );
 }
 
-const mapDispatchToProps = (dipatch) => {
-  return {
-    onLoadApi: () => dipatch(actions.loadApi()),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;

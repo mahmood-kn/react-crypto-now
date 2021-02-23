@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
 import Navbar from '../Utility/Navbar/Navbar';
-import Logo from '../Utility/Logo';
-import Name from '../Utility/Name';
-import Price from '../Utility/Price';
-import Change from '../Utility/Change';
-import Details from './Details';
+import CryptoPageContent from './CryptoPageContent';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
+import Skeleton from '@yisheng90/react-loading';
 
-const CryptoPage = ({ currency, loadCurrency, match, apiData }) => {
+const CryptoPage = ({ currency, loadCurrency, match, loading }) => {
   useEffect(() => {
     loadCurrency(match.params.name);
 
@@ -17,46 +14,26 @@ const CryptoPage = ({ currency, loadCurrency, match, apiData }) => {
   }, []);
   return (
     <>
-      {/* {console.log(currency)} */}
       <Navbar cryptoPage />
-      <div className='flex flex-col w-full container mx-auto'>
-        <div className='flex py-10 items-center'>
-          <Logo
-            logo={currency !== null ? currency.logo_url : ''}
-            size={20}
-            alt={currency !== null ? currency.id : ''}
-          />
-          <Name
-            className='text-2xl ml-4 font-bold'
-            name={currency !== null && currency.name}
-            symbol={currency !== null && currency.symbol}
-          />
-        </div>
-        <div>
-          <div className='flex h-20'>
-            <div className='w-1/3 flex justify-between pl-10 items-end'>
-              <Price className='text-4xl pr-3' price={10} />
-              <Change
-                className='text-xl'
-                ChangePct={currency !== null && currency['1d'].price_change_pct}
-              />
-            </div>
-            <div className='w-2/3'>
-              <Details
-                marketCapVal={currency !== null && currency.market_cap}
-                marketCapPctVal={
-                  currency !== null && currency['1d'].market_cap_change_pct
-                }
-                volumeVal={currency !== null && currency['1d'].volume}
-                volumePctVal={
-                  currency !== null && currency['1d'].volume_change_pct
-                }
-                rankVal={currency !== null && currency.rank}
-              />
-            </div>
+      {!loading ? (
+        <CryptoPageContent currency={currency} />
+      ) : (
+        <>
+          <div className='flex  justify-center items-center pt-20'>
+            <Skeleton circle width={100} />
+            <Skeleton width='70%' height='50px' />
           </div>
-        </div>
-      </div>
+          <div className='flex  justify-center items-center py-5'>
+            <Skeleton width='77%' height='50px' />
+          </div>
+          <div className='flex  justify-center items-center py-5'>
+            <Skeleton width='77%' height='50px' />
+          </div>
+          <div className='flex  justify-center items-center py-5'>
+            <Skeleton width='77%' height='50px' />
+          </div>
+        </>
+      )}
     </>
   );
 };
@@ -64,9 +41,9 @@ const CryptoPage = ({ currency, loadCurrency, match, apiData }) => {
 const mapStateToProps = (state) => {
   return {
     currency: state.currentCurrency,
+    loading: state.loading,
   };
 };
-
 const mapDispatchToProps = (dispatch) => {
   return {
     loadCurrency: (symbol) => dispatch(actions.loadCurrencyPage(symbol)),
