@@ -30,6 +30,11 @@ const cryptoReducer = (state, action) => {
         ...state,
         showModal: !state.showModal,
       };
+    case types.CHANGE_UNIT_STATE:
+      return {
+        ...state,
+        unit: action.payload,
+      };
     default:
       return state;
   }

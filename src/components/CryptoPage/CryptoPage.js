@@ -6,11 +6,12 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import Skeleton from '@yisheng90/react-loading';
 
-const CryptoPage = ({ currency, loadCurrency, match, loading }) => {
+const CryptoPage = ({ currency, loadCurrency, match, loading, unit }) => {
   useEffect(() => {
-    loadCurrency(match.params.name);
+    console.log(unit);
+    loadCurrency(match.params.name, unit);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [match.params.name, unit]);
   return (
     <>
       <Navbar cryptoPage />
@@ -41,11 +42,13 @@ const mapStateToProps = (state) => {
   return {
     currency: state.currentCurrency,
     loading: state.loading,
+    unit: state.unit,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadCurrency: (symbol) => dispatch(actions.loadCurrencyPage(symbol)),
+    loadCurrency: (symbol, unit) =>
+      dispatch(actions.loadCurrencyPage(symbol, unit)),
   };
 };
 

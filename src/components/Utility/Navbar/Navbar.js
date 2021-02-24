@@ -30,7 +30,7 @@ const Navbar = ({ homepage, cryptoPage, unit, showModal }) => {
             className={`mx-3 inline-block ${classes.HoverEffect}`}>
             Converter
           </NavLink>
-          {homepage && (
+          {(homepage || cryptoPage) && (
             <Currency
               classes={`${classes.HoverEffect} mx-3 bg-transparent focus:outline-none cursor-pointer `}
               unit={unit}

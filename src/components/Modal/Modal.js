@@ -11,6 +11,7 @@ const Modal = ({ showModal, showModalAction }) => {
         showModalAction();
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div
