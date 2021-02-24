@@ -25,6 +25,11 @@ const cryptoReducer = (state, action) => {
         ...state,
         loading: true,
       };
+    case types.SHOW_MODAL:
+      return {
+        ...state,
+        showModal: !state.showModal,
+      };
     default:
       return state;
   }

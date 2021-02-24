@@ -1,0 +1,11 @@
+.ModalContent {
+  background-color: #fefefe;
+  margin: 15% auto;
+  border-radius: 10px;
+  width: 80%;
+  padding: 1rem;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}

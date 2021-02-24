@@ -10,6 +10,8 @@ const initialState = {
   error: null,
   currentCurrency: null,
   loading: false,
+  unit: 'USD',
+  showModal: false,
 };
 
 const store = createStore(

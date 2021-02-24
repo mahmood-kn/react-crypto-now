@@ -3,8 +3,10 @@ import { NavLink, Link } from 'react-router-dom';
 import classes from './Navbar.module.css';
 import Currency from '../Currency';
 import Lang from './Lang';
+import * as actions from '../../../store/actions';
+import { connect } from 'react-redux';
 
-const Navbar = ({ homepage, cryptoPage }) => {
+const Navbar = ({ homepage, cryptoPage, unit, showModal }) => {
   return (
     <nav
       className={`${
@@ -29,7 +31,11 @@ const Navbar = ({ homepage, cryptoPage }) => {
             Converter
           </NavLink>
           {homepage && (
-            <Currency selectClasses='mx-3 bg-transparent outline-none cursor-pointer' />
+            <Currency
+              classes={`${classes.HoverEffect} mx-3 bg-transparent focus:outline-none cursor-pointer `}
+              unit={unit}
+              clicked={showModal}
+            />
           )}
           <Lang />
         </div>
@@ -38,4 +44,17 @@ const Navbar = ({ homepage, cryptoPage }) => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => {
+  return {
+    unit: state.unit,
+    loading: state.loading,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadCurrency: (symbol) => dispatch(actions.loadCurrencyPage(symbol)),
+    showModal: () => dispatch(actions.showModal()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

@@ -60,3 +60,9 @@ export const setLoading = () => {
     type: types.SET_LOADING,
   };
 };
+
+export const showModal = () => {
+  return {
+    type: types.SHOW_MODAL,
+  };
+};
