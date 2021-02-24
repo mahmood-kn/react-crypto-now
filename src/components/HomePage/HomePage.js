@@ -6,11 +6,11 @@ import Table from './Table';
 
 import { connect } from 'react-redux';
 
-const HomePage = ({ onLoadApi }) => {
+const HomePage = ({ onLoadApi, unit, cryptoToLoad }) => {
   useEffect(() => {
-    onLoadApi();
+    onLoadApi(unit, cryptoToLoad);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [unit]);
   return (
     <div>
       <Navbar homepage />
@@ -20,10 +20,18 @@ const HomePage = ({ onLoadApi }) => {
   );
 };
 
-const mapDispatchToProps = (dipatch) => {
+const mapStateToProps = (state) => {
   return {
-    onLoadApi: () => dipatch(actions.loadApi()),
+    unit: state.unit,
+    cryptoToLoad: state.cryptoToLoad,
   };
 };
 
-export default connect(null, mapDispatchToProps)(HomePage);
+const mapDispatchToProps = (dipatch) => {
+  return {
+    onLoadApi: (unit, cryptoToLoad) =>
+      dipatch(actions.loadApi(unit, cryptoToLoad)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

@@ -4,3 +4,4 @@ export const SET_LOADING = 'SET_LOADING';
 export const SET_CURRENT_CURRENCY = 'SET_CURRENT_CURRENCY';
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 export const CHANGE_UNIT_STATE = 'CHANGE_UNIT_STATE';
+export const LOAD_UNITS = 'LOAD_UNITS';

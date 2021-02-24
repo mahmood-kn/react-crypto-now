@@ -35,6 +35,12 @@ const cryptoReducer = (state, action) => {
         ...state,
         unit: action.payload,
       };
+    case types.LOAD_UNITS:
+      return {
+        ...state,
+        allUnits: action.payload,
+        loading: false,
+      };
     default:
       return state;
   }

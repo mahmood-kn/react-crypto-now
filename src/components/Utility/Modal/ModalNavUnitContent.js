@@ -1,12 +1,24 @@
-import React from 'react';
-import classes from './ModalNavUnitContent.module.css';
+import React, { useEffect } from 'react';
 import UnitBtn from '../UnitBtn';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
 
-const ModalContent = ({ changeUnit, toggleModal }) => {
+const ModalContent = ({
+  loading,
+  changeUnit,
+  toggleModal,
+  allUnits,
+  loadUnits,
+  showModal,
+  cryptoToLoad,
+}) => {
+  useEffect(() => {
+    if (showModal && allUnits.length === 0) {
+      loadUnits();
+    }
+  }, [showModal]);
   const handleClick = (e) => {
-    changeUnit(e.target.value);
+    changeUnit(e.target.value, cryptoToLoad);
     toggleModal();
   };
   return (
@@ -15,19 +27,29 @@ const ModalContent = ({ changeUnit, toggleModal }) => {
         Show Prices In Another Currency
       </h1>
       <div>
-        <UnitBtn unit='USD' clicked={handleClick} />
-        <UnitBtn unit='EUR' clicked={handleClick} />
+        {!loading && allUnits.length > 0
+          ? allUnits.map((unit) => (
+              <UnitBtn unit={unit} clicked={handleClick} />
+            ))
+          : null}
       </div>
     </>
   );
 };
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    allUnits: state.allUnits,
+    showModal: state.showModal,
+    loading: state.loading,
+    cryptoToLoad: state.cryptoToLoad,
+  };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeUnit: (unit) => dispatch(actions.changeUnit(unit)),
+    changeUnit: (unit, cryptoToLoad) =>
+      dispatch(actions.changeUnit(unit, cryptoToLoad)),
     toggleModal: () => dispatch(actions.toggleModal()),
+    loadUnits: () => dispatch(actions.loadUnits()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ModalContent);

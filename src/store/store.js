@@ -12,6 +12,8 @@ const initialState = {
   loading: false,
   unit: 'USD',
   showModal: false,
+  allUnits: [],
+  cryptoToLoad: ['BTC', 'ETH', 'XRP', 'BNB', 'DOGE'],
 };
 
 const store = createStore(

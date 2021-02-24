@@ -2,16 +2,16 @@ import * as types from './types';
 import axios from 'axios';
 
 const key = process.env.REACT_APP_NOMIC_API;
-const currencies = ['BTC', 'ETH', 'XRP', 'BNB', 'DOGE'];
 
-export const loadApi = () => {
+export const loadApi = (unit, cryptoToLoad) => {
   return async (dispatch) => {
+    console.log(unit);
     try {
       dispatch(setLoading());
       const res = await axios(
-        `https://api.nomics.com/v1/currencies/ticker?key=${key}&ids=${currencies.join(
+        `https://api.nomics.com/v1/currencies/ticker?key=${key}&ids=${cryptoToLoad.join(
           ','
-        )}&interval=1d&convert=USD&per-page=100&page=1`
+        )}&interval=1d&convert=${unit}&per-page=100&page=1`
       );
       dispatch(saveLoadApi(res.data));
     } catch (err) {
@@ -35,12 +35,12 @@ export const loadCurrencyPage = (symbol, unit) => {
     }
   };
 };
-export const changeUnit = (unit) => {
+export const changeUnit = (unit, cryptoToLoad) => {
   return async (dispatch) => {
     try {
       dispatch(setLoading());
       const res = await axios(
-        `https://api.nomics.com/v1/currencies/ticker?key=${key}&ids=${currencies.join(
+        `https://api.nomics.com/v1/currencies/ticker?key=${key}&ids=${cryptoToLoad.join(
           ','
         )}&interval=1d&convert=${unit}&per-page=100&page=1`
       );
@@ -52,6 +52,34 @@ export const changeUnit = (unit) => {
     }
   };
 };
+
+export const loadUnits = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoading());
+      const res = await axios(
+        `https://api.nomics.com/v1/exchange-rates?key=${key}`
+      );
+      const currencies = [];
+      res.data.forEach((curr) => {
+        currencies.push(curr.currency);
+      });
+      console.log(currencies);
+      dispatch(saveUnits(currencies));
+    } catch (err) {
+      console.log(err);
+      dispatch(loadApiErr(err));
+    }
+  };
+};
+
+export const saveUnits = (units) => {
+  return {
+    type: types.LOAD_UNITS,
+    payload: units,
+  };
+};
+
 export const changUnitState = (unit) => {
   return {
     type: types.CHANGE_UNIT_STATE,
