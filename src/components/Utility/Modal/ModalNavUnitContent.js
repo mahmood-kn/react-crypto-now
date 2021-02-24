@@ -1,22 +1,24 @@
 import React from 'react';
-import classes from './ModalContent.module.css';
-import UnitBtn from '../Utility/UnitBtn';
+import classes from './ModalNavUnitContent.module.css';
+import UnitBtn from '../UnitBtn';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions';
+import * as actions from '../../../store/actions';
 
-const ModalContent = ({ changeUnit, showModal }) => {
+const ModalContent = ({ changeUnit, toggleModal }) => {
   const handleClick = (e) => {
     changeUnit(e.target.value);
-    showModal();
+    toggleModal();
   };
   return (
-    <div className={`${classes.ModalContent}`}>
-      <h1>Show Prices In Another Currency</h1>
+    <>
+      <h1 className='text-xl font-bold mb-10'>
+        Show Prices In Another Currency
+      </h1>
       <div>
         <UnitBtn unit='USD' clicked={handleClick} />
         <UnitBtn unit='EUR' clicked={handleClick} />
       </div>
-    </div>
+    </>
   );
 };
 const mapStateToProps = (state) => {
@@ -25,7 +27,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     changeUnit: (unit) => dispatch(actions.changeUnit(unit)),
-    showModal: () => dispatch(actions.showModal()),
+    toggleModal: () => dispatch(actions.toggleModal()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ModalContent);

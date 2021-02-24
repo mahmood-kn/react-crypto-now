@@ -2,6 +2,6 @@ export {
   loadApi,
   setCurrentCurrency,
   loadCurrencyPage,
-  showModal,
+  toggleModal,
   changeUnit,
 } from './crypto';

@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import classes from './Modal.module.css';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions';
-import ModalContent from './ModalContent';
+import * as actions from '../../../store/actions';
 
-const Modal = ({ showModal, showModalAction }) => {
+const Modal = ({ showModal, toggleModalAction, children }) => {
   useEffect(() => {
     window.onclick = (e) => {
       if (e.target.classList.contains(classes.Modal)) {
-        showModalAction();
+        toggleModalAction();
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -17,7 +16,14 @@ const Modal = ({ showModal, showModalAction }) => {
     <div
       className={`${classes.Modal}`}
       style={{ display: `${showModal ? 'block' : 'none'}` }}>
-      <ModalContent />
+      <div className={`${classes.ModalContent} relative`}>
+        <span
+          onClick={toggleModalAction}
+          className='material-icons cursor-pointer right-4 top-3 absolute'>
+          close
+        </span>
+        {children}
+      </div>
     </div>
   );
 };
@@ -28,7 +34,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    showModalAction: () => dispatch(actions.showModal()),
+    toggleModalAction: () => dispatch(actions.toggleModal()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);

@@ -14,7 +14,7 @@ const Details = ({
     // console.log(marketCapVal, volumeVal, rankVal);
   }, []);
   return (
-    <div className='flex justify-end text-center space-x-52'>
+    <div className='flex justify-between text-center ml-20 '>
       <MarketCap marketCap={marketCapVal} marketCapPct={marketCapPctVal} />
       <Volume volume={volumeVal} volumePct={volumePctVal} />
       <Rank rank={rankVal} />

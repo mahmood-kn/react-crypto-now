@@ -6,6 +6,7 @@ import Change from '../Utility/Change';
 import Details from './Details';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Unit from '../Utility/Unit';
 
 const CryptoPage = ({ currency }) => {
   return (
@@ -23,9 +24,10 @@ const CryptoPage = ({ currency }) => {
           <div>
             <div className='flex h-20'>
               <div className='w-1/3 flex justify-between pl-10 items-end'>
-                <Price className='text-4xl pr-3' price={+currency.price} />
+                <Price className='text-3xl' price={+currency.price} />
+                <Unit />
                 <Change
-                  className='text-xl'
+                  className='text-lg'
                   ChangePct={currency['1d'].price_change_pct}
                 />
               </div>
@@ -48,7 +50,6 @@ const CryptoPage = ({ currency }) => {
 
 const mapStateToProps = (state) => {
   return {
-    // currency: state.currentCurrency,
     loading: state.loading,
   };
 };

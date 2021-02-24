@@ -1,0 +1,10 @@
+.Table th,
+td {
+  padding: 1rem;
+}
+.Table th {
+  text-align: left;
+}
+.Table {
+  border: none;
+}

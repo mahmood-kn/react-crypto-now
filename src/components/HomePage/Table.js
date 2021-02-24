@@ -3,6 +3,8 @@ import Row from './Row';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Skeleton from '@yisheng90/react-loading';
+import classes from './Table.module.css';
+import Unit from '../Utility/Unit';
 
 const Table = ({ apiData, history, loading }) => {
   const clickHandler = (name) => {
@@ -12,27 +14,38 @@ const Table = ({ apiData, history, loading }) => {
     });
   };
   return (
-    <div className=' w-7/12 shadow-md  border border-gray-300 absolute  top-2/4 left-1/2  rounded-tl-md rounded-tr-md transform -translate-x-1/2'>
-      <div className=' bg-white    rounded-tl-md rounded-tr-md p-8  flex justify-between border-b border-gray-300'>
-        <div></div>
-        <div>Name</div>
-        <div>Price</div>
-        <div>Change</div>
-        <div>Weekly Chart</div>
-      </div>
-      {!loading ? (
-        apiData !== null &&
-        apiData.map((cur, i) => (
-          <Row
-            key={cur.id}
-            data={cur}
-            onClickHandler={() => clickHandler(cur.symbol)}
-          />
-        ))
-      ) : (
-        <Skeleton height={80} rows={6} />
-      )}
-    </div>
+    <table
+      className={`${classes.Table} w-8/12 shadow-md  border absolute  top-2/4 left-1/2  rounded-md  transform -translate-x-1/2 bg-white `}>
+      <thead>
+        <tr className='border-b border-gray-300'>
+          <th></th>
+          <th>Name</th>
+          <th>
+            Price <Unit />
+          </th>
+          <th>Change</th>
+          <th>Weekly Change</th>
+        </tr>
+      </thead>
+      <tbody>
+        {!loading ? (
+          apiData !== null &&
+          apiData.map((cur, i) => (
+            <Row
+              key={cur.id}
+              data={cur}
+              onClickHandler={() => clickHandler(cur.symbol)}
+            />
+          ))
+        ) : (
+          <tr>
+            <td colSpan='5'>
+              <Skeleton height={80} rows={6} />
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
   );
 };
 

@@ -1,9 +1,19 @@
+.Modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+}
+
 .ModalContent {
   background-color: #fefefe;
   margin: 15% auto;
   border-radius: 10px;
   width: 80%;
-  padding: 1rem;
+  padding: 2rem;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;

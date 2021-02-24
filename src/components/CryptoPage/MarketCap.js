@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Change from '../Utility/Change';
 import { makeFriendly } from '../../utility/utilsFuncs';
+import Unit from '../Utility/Unit';
 
 const MarketCap = ({ marketCap, marketCapPct }) => {
   useEffect(() => {
@@ -8,8 +9,10 @@ const MarketCap = ({ marketCap, marketCapPct }) => {
   }, []);
   return (
     <div className='flex flex-col  items-start '>
-      <span className='uppercase text-sm text-gray-500 '>market cap</span>
-      <span className='my-2'>${makeFriendly(marketCap)}</span>
+      <span className='uppercase text-sm text-gray-500 '>
+        market cap <Unit />
+      </span>
+      <span className='my-2'>{makeFriendly(marketCap)}</span>
       <Change
         className='text-sm '
         iconClass='text-base'

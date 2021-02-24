@@ -6,7 +6,7 @@ import Lang from './Lang';
 import * as actions from '../../../store/actions';
 import { connect } from 'react-redux';
 
-const Navbar = ({ homepage, cryptoPage, unit, showModal }) => {
+const Navbar = ({ homepage, cryptoPage, unit, toggleModal }) => {
   return (
     <nav
       className={`${
@@ -34,7 +34,7 @@ const Navbar = ({ homepage, cryptoPage, unit, showModal }) => {
             <Currency
               classes={`${classes.HoverEffect} mx-3 bg-transparent focus:outline-none cursor-pointer `}
               unit={unit}
-              clicked={showModal}
+              clicked={toggleModal}
             />
           )}
           <Lang />
@@ -53,7 +53,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loadCurrency: (symbol) => dispatch(actions.loadCurrencyPage(symbol)),
-    showModal: () => dispatch(actions.showModal()),
+    toggleModal: () => dispatch(actions.toggleModal()),
   };
 };
 

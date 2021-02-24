@@ -85,8 +85,8 @@ export const setLoading = () => {
   };
 };
 
-export const showModal = () => {
+export const toggleModal = () => {
   return {
-    type: types.SHOW_MODAL,
+    type: types.TOGGLE_MODAL,
   };
 };

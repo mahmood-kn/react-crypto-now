@@ -7,17 +7,25 @@ import Chart from './Chart';
 
 const Row = ({ data, onClickHandler }) => {
   return (
-    <div
-      className=' bg-white p-8 flex items-center justify-between border-b border-gray-300 cursor-pointer'
+    <tr
+      className='p-8 border-b border-gray-300 cursor-pointer'
       onClick={onClickHandler}>
-      <div className='flex'>
-        <Logo className='mr-10' logo={data.logo_url} size={10} alt={data.id} />
+      <td className='pl-7'>
+        <Logo className='mr-12' logo={data.logo_url} size={12} alt={data.id} />
+      </td>
+      <td>
         <Name name={data.name} symbol={data.symbol} />
-      </div>
-      <Price price={+data.price} />
-      <Change ChangePct={data['1d'].price_change_pct} />
-      <Chart />
-    </div>
+      </td>
+      <td>
+        <Price price={+data.price} />
+      </td>
+      <td>
+        <Change ChangePct={data['1d'].price_change_pct} />
+      </td>
+      <td>
+        <Chart />
+      </td>
+    </tr>
   );
 };
 
