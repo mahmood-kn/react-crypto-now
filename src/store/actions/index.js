@@ -5,4 +5,5 @@ export {
   toggleModal,
   changeUnit,
   loadUnits,
+  searchUnits,
 } from './crypto';

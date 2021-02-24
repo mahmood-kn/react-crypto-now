@@ -13,6 +13,7 @@ const initialState = {
   unit: 'USD',
   showModal: false,
   allUnits: [],
+  allUnitsWithFilter: [],
   cryptoToLoad: ['BTC', 'ETH', 'XRP', 'BNB', 'DOGE'],
 };
 

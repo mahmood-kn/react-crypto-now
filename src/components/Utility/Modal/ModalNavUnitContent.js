@@ -2,20 +2,22 @@ import React, { useEffect } from 'react';
 import UnitBtn from '../UnitBtn';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
+import Search from '../../Utility/Search';
 
 const ModalContent = ({
   loading,
   changeUnit,
   toggleModal,
-  allUnits,
+  allUnitsWithFilter,
   loadUnits,
   showModal,
   cryptoToLoad,
 }) => {
   useEffect(() => {
-    if (showModal && allUnits.length === 0) {
+    if (showModal && allUnitsWithFilter.length === 0) {
       loadUnits();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showModal]);
   const handleClick = (e) => {
     changeUnit(e.target.value, cryptoToLoad);
@@ -23,13 +25,14 @@ const ModalContent = ({
   };
   return (
     <>
-      <h1 className='text-xl font-bold mb-10'>
+      <h1 className='text-2xl font-bold text-center '>
         Show Prices In Another Currency
       </h1>
+      <Search />
       <div>
-        {!loading && allUnits.length > 0
-          ? allUnits.map((unit) => (
-              <UnitBtn unit={unit} clicked={handleClick} />
+        {!loading && allUnitsWithFilter.length > 0
+          ? allUnitsWithFilter.map((unit) => (
+              <UnitBtn key={unit} unit={unit} clicked={handleClick} />
             ))
           : null}
       </div>
@@ -38,7 +41,7 @@ const ModalContent = ({
 };
 const mapStateToProps = (state) => {
   return {
-    allUnits: state.allUnits,
+    allUnitsWithFilter: state.allUnitsWithFilter,
     showModal: state.showModal,
     loading: state.loading,
     cryptoToLoad: state.cryptoToLoad,

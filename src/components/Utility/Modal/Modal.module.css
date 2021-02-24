@@ -1,8 +1,8 @@
 .Modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  height: fit-content;
+  height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 100;
@@ -10,13 +10,24 @@
 
 .ModalContent {
   background-color: #fefefe;
-  margin: 15% auto;
+  overflow-y: scroll;
+  margin: 5% auto;
   border-radius: 10px;
   width: 80%;
-  height: 100%;
+  height: 80vh;
   padding: 2rem;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
+}
+
+.ModalContent::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.ModalContent {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

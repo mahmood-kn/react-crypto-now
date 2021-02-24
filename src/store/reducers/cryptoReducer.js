@@ -39,7 +39,13 @@ const cryptoReducer = (state, action) => {
       return {
         ...state,
         allUnits: action.payload,
+        allUnitsWithFilter: action.payload,
         loading: false,
+      };
+    case types.SEARCH_UNITS:
+      return {
+        ...state,
+        allUnitsWithFilter: action.payload,
       };
     default:
       return state;

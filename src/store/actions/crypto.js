@@ -5,7 +5,6 @@ const key = process.env.REACT_APP_NOMIC_API;
 
 export const loadApi = (unit, cryptoToLoad) => {
   return async (dispatch) => {
-    console.log(unit);
     try {
       dispatch(setLoading());
       const res = await axios(
@@ -64,12 +63,18 @@ export const loadUnits = () => {
       res.data.forEach((curr) => {
         currencies.push(curr.currency);
       });
-      console.log(currencies);
       dispatch(saveUnits(currencies));
     } catch (err) {
       console.log(err);
       dispatch(loadApiErr(err));
     }
+  };
+};
+
+export const searchUnits = (filteredUnits) => {
+  return {
+    type: types.SEARCH_UNITS,
+    payload: filteredUnits,
   };
 };
 

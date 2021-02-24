@@ -2,9 +2,8 @@ import React, { useEffect } from 'react';
 import Navbar from '../Utility/Navbar/Navbar';
 import HomeMainSection from './HomeMainSection';
 import * as actions from '../../store/actions';
-import Table from './Table';
-
 import { connect } from 'react-redux';
+import Table from './Table';
 
 const HomePage = ({ onLoadApi, unit, cryptoToLoad }) => {
   useEffect(() => {
