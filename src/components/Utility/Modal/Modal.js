@@ -1,21 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './Modal.module.css';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
 
 const Modal = ({ showModal, toggleModalAction, children }) => {
+  const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
+    setIsOpen(showModal);
     window.onclick = (e) => {
       if (e.target.classList.contains(classes.Modal)) {
         toggleModalAction();
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [showModal]);
   return (
     <div
       className={`${classes.Modal}`}
-      style={{ display: `${showModal ? 'block' : 'none'}` }}>
+      style={{ display: `${isOpen ? 'block' : 'none'}` }}>
       <div className={`${classes.ModalContent} relative`}>
         <span
           onClick={toggleModalAction}
@@ -28,9 +30,7 @@ const Modal = ({ showModal, toggleModalAction, children }) => {
   );
 };
 const mapStateToProps = (state) => {
-  return {
-    showModal: state.showModal,
-  };
+  return {};
 };
 const mapDispatchToProps = (dispatch) => {
   return {

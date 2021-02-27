@@ -7,3 +7,7 @@ export const makeFriendly = (num) => {
   if (num >= 1000) return intlFormat(num / 1000) + 'k';
   return intlFormat(num);
 };
+
+export const dispWithComma = (num) => {
+  return num.toLocaleString('en-US');
+};

@@ -6,27 +6,17 @@ import Search from '../../Utility/Search';
 
 const ModalContent = ({
   loading,
-  changeUnit,
   toggleModal,
-  allUnits,
-  allUnitsWithFilter,
-  saveUnits,
   showModal,
-  cryptoToLoad,
   rates,
+  changeCurrentRate,
+  allUnitsWithFilter,
 }) => {
   useEffect(() => {
-    if (allUnits.length === 0 && rates !== null) {
-      const currencies = [];
-      rates.forEach((curr) => {
-        currencies.push(curr.currency);
-      });
-      saveUnits(currencies);
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rates]);
+  }, [showModal]);
   const handleClick = (e) => {
-    changeUnit(e.target.value, cryptoToLoad);
+    changeCurrentRate(e.target.value);
     toggleModal();
   };
   return (
@@ -36,7 +26,7 @@ const ModalContent = ({
       </h1>
       <Search />
       <div>
-        {!loading && allUnits.length > 0
+        {!loading && rates !== null
           ? allUnitsWithFilter.map((unit) => (
               <UnitBtn key={unit} unit={unit} clicked={handleClick} />
             ))
@@ -47,20 +37,16 @@ const ModalContent = ({
 };
 const mapStateToProps = (state) => {
   return {
-    allUnitsWithFilter: state.allUnitsWithFilter,
-    allUnits: state.allUnits,
     showModal: state.showModal,
     loading: state.loading,
-    cryptoToLoad: state.cryptoToLoad,
     rates: state.rates,
+    allUnitsWithFilter: state.allUnitsWithFilter,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeUnit: (unit, cryptoToLoad) =>
-      dispatch(actions.changeUnit(unit, cryptoToLoad)),
     toggleModal: () => dispatch(actions.toggleModal()),
-    saveUnits: (units) => dispatch(actions.saveUnits(units)),
+    changeCurrentRate: (rate) => dispatch(actions.changeCurrentRate(rate)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ModalContent);

@@ -15,6 +15,8 @@ const initialState = {
   allUnits: [],
   allUnitsWithFilter: [],
   cryptoToLoad: ['BTC', 'ETH', 'XRP', 'BNB', 'DOGE'],
+  rates: null,
+  currentRate: [{ currency: 'BTC', rate: '' }],
 };
 
 const store = createStore(

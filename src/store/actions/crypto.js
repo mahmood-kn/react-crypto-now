@@ -52,22 +52,33 @@ export const changeUnit = (unit, cryptoToLoad) => {
   };
 };
 
-export const loadUnits = () => {
+export const getRates = () => {
   return async (dispatch) => {
     try {
       dispatch(setLoading());
       const res = await axios(
         `https://api.nomics.com/v1/exchange-rates?key=${key}`
       );
-      const currencies = [];
-      res.data.forEach((curr) => {
-        currencies.push(curr.currency);
-      });
-      dispatch(saveUnits(currencies));
+
+      dispatch(saveRates(res.data));
     } catch (err) {
       console.log(err);
       dispatch(loadApiErr(err));
     }
+  };
+};
+
+export const changeCurrentRate = (givenRate) => {
+  return {
+    type: types.CHANGE_CURRENT_RATE,
+    payload: givenRate,
+  };
+};
+
+export const saveRates = (rates) => {
+  return {
+    type: types.GET_RATES,
+    payload: rates,
   };
 };
 
@@ -80,7 +91,7 @@ export const searchUnits = (filteredUnits) => {
 
 export const saveUnits = (units) => {
   return {
-    type: types.LOAD_UNITS,
+    type: types.SAVE_UNITS,
     payload: units,
   };
 };

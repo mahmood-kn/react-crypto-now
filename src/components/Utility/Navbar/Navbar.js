@@ -5,8 +5,13 @@ import Currency from '../Currency';
 import Lang from './Lang';
 import * as actions from '../../../store/actions';
 import { connect } from 'react-redux';
+import Modal from '../Modal/Modal';
+import ModalNavUnitContent from '../Modal/ModalNavUnitContent';
 
-const Navbar = ({ homepage, cryptoPage, unit, toggleModal }) => {
+const Navbar = ({ homepage, cryptoPage, unit, toggleModal, showModal }) => {
+  const handleClick = () => {
+    toggleModal();
+  };
   return (
     <nav
       className={`${
@@ -34,12 +39,13 @@ const Navbar = ({ homepage, cryptoPage, unit, toggleModal }) => {
             <Currency
               classes={`${classes.HoverEffect} mx-3 bg-transparent focus:outline-none cursor-pointer `}
               unit={unit}
-              clicked={toggleModal}
+              clicked={handleClick}
             />
           )}
           <Lang />
         </div>
       </div>
+      <Modal showModal={showModal} children={<ModalNavUnitContent />} />
     </nav>
   );
 };
@@ -48,6 +54,7 @@ const mapStateToProps = (state) => {
   return {
     unit: state.unit,
     loading: state.loading,
+    showModal: state.showModal,
   };
 };
 const mapDispatchToProps = (dispatch) => {

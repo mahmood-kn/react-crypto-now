@@ -1,16 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
 
 const Search = ({ allUnits, searchUnits }) => {
   const [search, setSearch] = useState('');
-
-  useEffect(() => {
-    const filteredUnits = allUnits.filter((unit) =>
-      unit.toLowerCase().includes(search.toLowerCase())
-    );
-    // console.log(filteredUnits);
-    searchUnits(filteredUnits);
+  const firstRender = useRef(true);
+  useLayoutEffect(() => {
+    if (!firstRender.current) {
+      const filteredUnits = allUnits.filter((unit) =>
+        unit.toLowerCase().includes(search.toLowerCase())
+      );
+      searchUnits(filteredUnits);
+    } else {
+      firstRender.current = false;
+      return;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   const handleChange = (e) => {
@@ -18,7 +23,7 @@ const Search = ({ allUnits, searchUnits }) => {
   };
   return (
     <input
-      className='border border-gray-300 w-6/12  rounded-lg py-2 px-4 my-4 mx-auto block'
+      className='border border-gray-300 w-6/12  rounded-lg py-2 px-4 my-4 mx-auto block '
       type='text'
       placeholder='Search...'
       value={search}

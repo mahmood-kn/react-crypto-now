@@ -8,6 +8,7 @@ import Table from './Table';
 const HomePage = ({ onLoadApi, unit, cryptoToLoad }) => {
   useEffect(() => {
     onLoadApi(unit, cryptoToLoad);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [unit]);
   return (
@@ -26,10 +27,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dipatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onLoadApi: (unit, cryptoToLoad) =>
-      dipatch(actions.loadApi(unit, cryptoToLoad)),
+      dispatch(actions.loadApi(unit, cryptoToLoad)),
   };
 };
 

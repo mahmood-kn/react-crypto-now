@@ -4,6 +4,8 @@ export {
   loadCurrencyPage,
   toggleModal,
   changeUnit,
-  loadUnits,
   searchUnits,
+  getRates,
+  changeCurrentRate,
+  saveUnits,
 } from './crypto';
