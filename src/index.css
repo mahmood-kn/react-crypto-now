@@ -16,3 +16,6 @@
   --dark-gray: #707070;
   --black: #18191a;
 }
+body {
+  font-family: 'Proza Libre', sans-serif;
+}

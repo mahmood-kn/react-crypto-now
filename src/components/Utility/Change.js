@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const Change = ({ className, iconClass, ChangePct }) => {
-  useEffect(() => {
-    // console.log(ChangePct);
-  }, []);
   return (
     <div
       className={`${className} flex items-center w-32 ${

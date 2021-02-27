@@ -13,7 +13,8 @@ function App({ rates, getRates }) {
     if (rates === null) {
       getRates();
     }
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rates]);
   return (
     <>
       <Router>

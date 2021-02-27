@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ConverterMainSection from './ConverterMainSection';
 import Navbar from '../Utility/Navbar/Navbar';
 import Currency from '../Utility/Currency';
@@ -8,22 +8,10 @@ import SwapBtn from './SwapBtn';
 import Modal from '../Utility/Modal/Modal';
 import ModalRates from '../Utility/Modal/ModalRates';
 
-const Converter = ({
-  rates,
-  currentRate,
-  toggleModal,
-  showModal,
-  changeCurrentRate,
-}) => {
+const Converter = ({ currentRate, toggleModal, showModal }) => {
   const [usd, setUsd] = useState('');
   const [endCurr, setEndCurr] = useState('');
-  useEffect(() => {
-    // getRates();
-    if (rates !== null) {
-      changeCurrentRate('BTC');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rates]);
+
   const handleClick = () => {
     toggleModal();
   };
@@ -91,8 +79,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleModal: () => dispatch(actions.toggleModal()),
-    getRates: () => dispatch(actions.getRates()),
-    changeCurrentRate: (rate) => dispatch(actions.changeCurrentRate(rate)),
   };
 };
 
