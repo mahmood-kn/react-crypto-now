@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import UnitBtn from '../UnitBtn';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
@@ -12,14 +12,7 @@ const ModalContent = ({
   filteredCryptoes,
   showModal,
   cryptoes,
-  getCryptoes,
 }) => {
-  // useEffect(() => {
-  //   if (cryptoes.length === 0) {
-  //     getCryptoes();
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [cryptoes]);
   const handleClick = (e) => {
     addCurrency(e.target.value);
     toggleModal();
@@ -51,7 +44,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleModal: () => dispatch(actions.toggleModal()),
-    getCryptoes: () => dispatch(actions.getCryptoes()),
     addCurrency: (currency) => dispatch(actions.addCurrency(currency)),
   };
 };

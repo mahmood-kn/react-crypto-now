@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import classes from './Navbar.module.css';
-import Lang from './Lang';
+// import Lang from './Lang';
 import * as actions from '../../../store/actions';
 import { connect } from 'react-redux';
 import ChangeUnit from './ChangeUnit';
