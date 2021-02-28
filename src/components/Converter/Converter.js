@@ -7,15 +7,24 @@ import * as actions from '../../store/actions';
 import SwapBtn from './SwapBtn';
 import ModalRates from '../Utility/Modal/ModalRates';
 
-const Converter = ({ currentRate, toggleModal, showModal }) => {
+const Converter = ({
+  currentRate,
+  toggleModal,
+  showModal,
+  changeCurrentRate,
+  rates,
+}) => {
   const [usd, setUsd] = useState('');
   const [endCurr, setEndCurr] = useState('');
   const btnClick = useRef(false);
   useEffect(() => {
+    if (rates !== null && currentRate[0].rate === '') {
+      changeCurrentRate('BTC');
+    }
     if (showModal === false) {
       btnClick.current = false;
     }
-  }, [showModal]);
+  }, [showModal, rates]);
 
   const handleClick = () => {
     toggleModal();
@@ -24,12 +33,12 @@ const Converter = ({ currentRate, toggleModal, showModal }) => {
 
   const usdChange = (e) => {
     setUsd(e.target.value);
-    setEndCurr(e.target.value * +currentRate[0].rate);
+    setEndCurr(+e.target.value * +currentRate[0].rate);
   };
 
   const endCurrChange = (e) => {
     setEndCurr(e.target.value);
-    setUsd(e.target.value / +currentRate[0].rate);
+    setUsd(+e.target.value / +currentRate[0].rate);
   };
   return (
     <>
@@ -84,6 +93,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleModal: () => dispatch(actions.toggleModal()),
+    changeCurrentRate: (unit) => dispatch(actions.changeCurrentRate(unit)),
   };
 };
 

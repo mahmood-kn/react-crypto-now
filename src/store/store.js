@@ -14,7 +14,7 @@ const initialState = {
   showModal: false,
   allUnits: [],
   allUnitsWithFilter: [],
-  cryptoToLoad: ['BTC', 'POA'],
+  cryptoToLoad: ['BTC', 'ETH', 'BNB', 'DOGE', 'USDT', 'TRX', 'LTC', 'BCH'],
   rates: null,
   currentRate: [{ currency: 'BTC', rate: '' }],
   cryptoes: [],
