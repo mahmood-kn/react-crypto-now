@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import Skeleton from '@yisheng90/react-loading';
+import CryptoPageLayer from './CryptoPageLayer';
 
 const CryptoPage = ({ currency, loadCurrency, match, loading, unit }) => {
   useEffect(() => {
@@ -15,7 +16,10 @@ const CryptoPage = ({ currency, loadCurrency, match, loading, unit }) => {
     <>
       <Navbar cryptoPage />
       {!loading ? (
-        <CryptoPageContent currency={currency} />
+        <>
+          <CryptoPageLayer />
+          <CryptoPageContent currency={currency} />
+        </>
       ) : (
         <>
           <div className='flex  justify-center items-center pt-20'>

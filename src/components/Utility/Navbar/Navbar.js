@@ -35,7 +35,7 @@ const Navbar = ({ homepage, cryptoPage }) => {
           {(homepage || cryptoPage) && (
             <ChangeUnit classes={classes.HoverEffect} />
           )}
-          <Lang />
+          {/* <Lang /> */}
         </div>
       </div>
     </nav>

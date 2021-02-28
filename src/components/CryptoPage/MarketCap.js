@@ -9,7 +9,7 @@ const MarketCap = ({ marketCap, marketCapPct }) => {
   }, []);
   return (
     <div className='flex flex-col  items-start '>
-      <span className='uppercase text-sm text-gray-500 '>
+      <span className='uppercase text-sm text-gray-300 '>
         market cap <Unit />
       </span>
       <span className='my-2'>{makeFriendly(marketCap)}</span>

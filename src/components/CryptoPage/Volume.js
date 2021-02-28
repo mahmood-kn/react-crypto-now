@@ -6,7 +6,7 @@ import Unit from '../Utility/Unit';
 const Volume = ({ volume, volumePct, unit }) => {
   return (
     <div className='flex flex-col items-start'>
-      <span className='uppercase text-sm text-gray-500 '>
+      <span className='uppercase text-sm text-gray-300 '>
         volume <Unit />
       </span>
       <span className='my-2'>{makeFriendly(volume)}</span>

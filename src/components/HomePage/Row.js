@@ -3,7 +3,6 @@ import Name from '../Utility/Name';
 import Logo from '../Utility/Logo';
 import Change from '../Utility/Change';
 import Price from '../Utility/Price';
-import Chart from './Chart';
 
 const Row = ({ data, onClickHandler }) => {
   return (
@@ -21,9 +20,6 @@ const Row = ({ data, onClickHandler }) => {
       </td>
       <td>
         <Change ChangePct={data['1d'].price_change_pct} />
-      </td>
-      <td>
-        <Chart />
       </td>
     </tr>
   );

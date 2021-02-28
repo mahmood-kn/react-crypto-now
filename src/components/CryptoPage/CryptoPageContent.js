@@ -12,7 +12,7 @@ const CryptoPage = ({ currency }) => {
   return (
     <>
       {currency !== null && (
-        <div className='flex flex-col w-full container mx-auto'>
+        <div className='flex flex-col w-full container mx-auto h-screen -m-24 justify-center text-white'>
           <div className='flex py-10 items-center'>
             <Logo logo={currency.logo_url} size={20} alt={currency.id} />
             <Name
