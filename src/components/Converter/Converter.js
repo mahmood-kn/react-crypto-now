@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ConverterMainSection from './ConverterMainSection';
 import Navbar from '../Utility/Navbar/Navbar';
 import Currency from '../Utility/Currency';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import SwapBtn from './SwapBtn';
-import Modal from '../Utility/Modal/Modal';
 import ModalRates from '../Utility/Modal/ModalRates';
 
 const Converter = ({ currentRate, toggleModal, showModal }) => {
   const [usd, setUsd] = useState('');
   const [endCurr, setEndCurr] = useState('');
-  const [btnClicked, setBtnClicked] = useState(false);
+  const btnClick = useRef(false);
+  useEffect(() => {
+    if (showModal === false) {
+      btnClick.current = false;
+    }
+  }, [showModal]);
 
   const handleClick = () => {
     toggleModal();
-    setBtnClicked(true);
+    btnClick.current = true;
   };
 
   const usdChange = (e) => {
@@ -63,10 +67,7 @@ const Converter = ({ currentRate, toggleModal, showModal }) => {
             }...`}
             onChange={endCurrChange}
           />
-          {btnClicked ? (
-            <Modal showModal={showModal} children={<ModalRates />} />
-          ) : null}
-          ;
+          {btnClick.current ? <ModalRates /> : null};
         </div>
       </div>
     </>

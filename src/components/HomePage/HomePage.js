@@ -11,11 +11,11 @@ const HomePage = ({ onLoadApi, unit, cryptoToLoad }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [unit, cryptoToLoad]);
   return (
-    <div>
+    <>
       <Navbar homepage />
       <HomeMainSection />
       <Table />
-    </div>
+    </>
   );
 };
 

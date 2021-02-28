@@ -31,11 +31,11 @@ const Navbar = ({ homepage, cryptoPage }) => {
             className={`mx-3 inline-block ${classes.HoverEffect}`}>
             Converter
           </NavLink>
+          {homepage && <AddCurrency classes={`${classes.HoverEffect}`} />}
           {(homepage || cryptoPage) && (
             <ChangeUnit classes={classes.HoverEffect} />
           )}
           <Lang />
-          {homepage && <AddCurrency classes={`${classes.HoverEffect}`} />}
         </div>
       </div>
     </nav>

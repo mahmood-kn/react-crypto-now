@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
 import ModalAddCurrency from '../Modal/ModalAddCurrency';
 
 const AddCurrency = ({ classes, toggleModal, showModal }) => {
+  const btnClick = useRef(false);
+  useEffect(() => {
+    if (showModal === false) {
+      btnClick.current = false;
+    }
+  }, [showModal]);
   const handleClick = () => {
     toggleModal();
+    btnClick.current = true;
   };
   return (
     <>
@@ -14,7 +21,7 @@ const AddCurrency = ({ classes, toggleModal, showModal }) => {
         onClick={handleClick}>
         Add Currency
       </button>
-      {showModal ? <ModalAddCurrency /> : null}
+      {btnClick.current ? <ModalAddCurrency /> : null}
     </>
   );
 };

@@ -27,6 +27,7 @@ function App({ rates, getRates, allUnits, saveUnits, getCryptoes, cryptoes }) {
     if (cryptoes.length === 0) {
       getCryptoes();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

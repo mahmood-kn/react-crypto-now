@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import * as actions from '../../../store/actions';
 import { connect } from 'react-redux';
 import ModalNavUnitContent from '../Modal/ModalNavUnitContent';
 import Currency from '../Currency';
 
 const ChangeUnit = ({ unit, toggleModal, showModal, classes }) => {
+  const btnClick = useRef(false);
+  useEffect(() => {
+    if (showModal === false) {
+      btnClick.current = false;
+    }
+  }, [showModal]);
   const handleClick = () => {
+    btnClick.current = true;
     toggleModal();
   };
   return (
@@ -15,7 +22,7 @@ const ChangeUnit = ({ unit, toggleModal, showModal, classes }) => {
         unit={unit}
         clicked={handleClick}
       />
-      {showModal ? <ModalNavUnitContent /> : null}
+      {btnClick.current ? <ModalNavUnitContent /> : null}
     </>
   );
 };
