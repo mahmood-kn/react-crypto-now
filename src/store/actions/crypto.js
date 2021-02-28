@@ -21,7 +21,7 @@ export const loadApi = (unit, cryptoToLoad) => {
 };
 
 export const loadCurrencyPage = (symbol, unit) => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       dispatch(setLoading());
       const res = await axios(
@@ -67,6 +67,38 @@ export const getRates = () => {
     }
   };
 };
+export const getCryptoes = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoading());
+      const res = await axios(
+        `https://api.nomics.com/v1/markets?key=${key}&exchange=binance`
+      );
+      const cryptoes = [];
+      res.data.forEach((data) => {
+        cryptoes.push(data.base);
+      });
+      dispatch(saveCtyotoes(cryptoes));
+    } catch (err) {
+      console.log(err);
+      dispatch(loadApiErr(err));
+    }
+  };
+};
+
+export const saveCtyotoes = (cryptoes) => {
+  return {
+    type: types.GET_CRYPTOES,
+    payload: cryptoes,
+  };
+};
+
+export const addCurrency = (currency) => {
+  return {
+    type: types.ADD_CURRENCY,
+    payload: currency,
+  };
+};
 
 export const changeCurrentRate = (givenRate) => {
   return {
@@ -82,10 +114,10 @@ export const saveRates = (rates) => {
   };
 };
 
-export const searchUnits = (filteredUnits) => {
+export const searchUnits = (filteredUnits, filterState) => {
   return {
     type: types.SEARCH_UNITS,
-    payload: filteredUnits,
+    payload: { filteredUnits, filterState },
   };
 };
 

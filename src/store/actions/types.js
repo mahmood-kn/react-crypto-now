@@ -8,3 +8,6 @@ export const SAVE_UNITS = 'SAVE_UNITS';
 export const SEARCH_UNITS = 'SEARCH_UNITS';
 export const GET_RATES = 'GET_RATES';
 export const CHANGE_CURRENT_RATE = 'CHANGE_CURRENT_RATE';
+export const ADD_CURRENCY = 'ADD_CURRENCY';
+export const GET_CRYPTOES = 'GET_CRYPTOES';
+export const FILTER_CRYPTOES = 'FILTER_CRYPTOES';

@@ -45,7 +45,7 @@ const cryptoReducer = (state, action) => {
     case types.SEARCH_UNITS:
       return {
         ...state,
-        allUnitsWithFilter: action.payload,
+        [action.payload.filterState]: action.payload.filteredUnits,
       };
     case types.GET_RATES:
       return {
@@ -60,6 +60,22 @@ const cryptoReducer = (state, action) => {
       return {
         ...state,
         currentRate: btcRate,
+      };
+    case types.ADD_CURRENCY:
+      return {
+        ...state,
+        cryptoToLoad: [...state.cryptoToLoad, action.payload],
+      };
+    case types.GET_CRYPTOES:
+      return {
+        ...state,
+        cryptoes: [...new Set(action.payload)],
+        filteredCryptoes: [...new Set(action.payload)],
+      };
+    case types.FILTER_CRYPTOES:
+      return {
+        ...state,
+        filteredCryptoes: action.payload,
       };
     default:
       return state;

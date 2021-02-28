@@ -3,28 +3,27 @@ import UnitBtn from '../UnitBtn';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
 import Search from '../../Utility/Search';
+import Modal from './Modal';
 
 const ModalContent = ({
   loading,
   toggleModal,
-  showModal,
   rates,
   changeCurrentRate,
   allUnitsWithFilter,
+  showModal,
+  allUnits,
 }) => {
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showModal]);
   const handleClick = (e) => {
     changeCurrentRate(e.target.value);
     toggleModal();
   };
   return (
-    <>
+    <Modal showModal={showModal}>
       <h1 className='text-2xl font-bold text-center '>
-        Show Prices In Another Currency
+        Other Currencies To Convert
       </h1>
-      <Search />
+      <Search arrayToSearch={allUnits} filterState={'allUnitsWithFilter'} />
       <div>
         {!loading && rates !== null
           ? allUnitsWithFilter.map((unit) => (
@@ -32,7 +31,7 @@ const ModalContent = ({
             ))
           : null}
       </div>
-    </>
+    </Modal>
   );
 };
 const mapStateToProps = (state) => {
@@ -41,6 +40,7 @@ const mapStateToProps = (state) => {
     loading: state.loading,
     rates: state.rates,
     allUnitsWithFilter: state.allUnitsWithFilter,
+    allUnits: state.allUnits,
   };
 };
 const mapDispatchToProps = (dispatch) => {

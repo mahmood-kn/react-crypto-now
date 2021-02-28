@@ -8,4 +8,6 @@ export {
   getRates,
   changeCurrentRate,
   saveUnits,
+  addCurrency,
+  getCryptoes,
 } from './crypto';

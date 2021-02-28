@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import UnitBtn from '../UnitBtn';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
@@ -7,47 +7,45 @@ import Modal from './Modal';
 
 const ModalContent = ({
   loading,
-  changeUnit,
   toggleModal,
-  allUnits,
-  allUnitsWithFilter,
-  cryptoToLoad,
+  addCurrency,
+  filteredCryptoes,
   showModal,
+  cryptoes,
 }) => {
   const handleClick = (e) => {
-    changeUnit(e.target.value, cryptoToLoad);
+    addCurrency(e.target.value);
+
     toggleModal();
   };
   return (
     <Modal showModal={showModal}>
-      <h1 className='text-2xl font-bold text-center '>
-        Show Prices In Another Currency
-      </h1>
-      <Search arrayToSearch={allUnits} filterState={'allUnitsWithFilter'} />
+      <h1 className='text-2xl font-bold text-center '>Add New Currency</h1>
+      <Search arrayToSearch={cryptoes} filterState={'filteredCryptoes'} />
       <div>
-        {!loading && allUnits.length > 0
-          ? allUnitsWithFilter.map((unit) => (
+        {!loading && cryptoes.length > 0
+          ? filteredCryptoes.map((unit) => (
               <UnitBtn key={unit} unit={unit} clicked={handleClick} />
             ))
-          : null}
+          : 'Loading...'}
       </div>
     </Modal>
   );
 };
 const mapStateToProps = (state) => {
   return {
-    allUnitsWithFilter: state.allUnitsWithFilter,
-    allUnits: state.allUnits,
-    loading: state.loading,
-    cryptoToLoad: state.cryptoToLoad,
     showModal: state.showModal,
+    loading: state.loading,
+    rates: state.rates,
+    allUnitsWithFilter: state.allUnitsWithFilter,
+    cryptoes: state.cryptoes,
+    filteredCryptoes: state.filteredCryptoes,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeUnit: (unit, cryptoToLoad) =>
-      dispatch(actions.changeUnit(unit, cryptoToLoad)),
     toggleModal: () => dispatch(actions.toggleModal()),
+    addCurrency: (currency) => dispatch(actions.addCurrency(currency)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ModalContent);

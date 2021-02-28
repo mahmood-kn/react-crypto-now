@@ -11,9 +11,11 @@ import ModalRates from '../Utility/Modal/ModalRates';
 const Converter = ({ currentRate, toggleModal, showModal }) => {
   const [usd, setUsd] = useState('');
   const [endCurr, setEndCurr] = useState('');
+  const [btnClicked, setBtnClicked] = useState(false);
 
   const handleClick = () => {
     toggleModal();
+    setBtnClicked(true);
   };
 
   const usdChange = (e) => {
@@ -61,9 +63,11 @@ const Converter = ({ currentRate, toggleModal, showModal }) => {
             }...`}
             onChange={endCurrChange}
           />
+          {btnClicked ? (
+            <Modal showModal={showModal} children={<ModalRates />} />
+          ) : null}
           ;
         </div>
-        <Modal showModal={showModal} children={<ModalRates />} />
       </div>
     </>
   );

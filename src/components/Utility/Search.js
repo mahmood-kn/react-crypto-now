@@ -2,15 +2,15 @@ import React, { useState, useRef, useLayoutEffect } from 'react';
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
 
-const Search = ({ allUnits, searchUnits }) => {
+const Search = ({ arrayToSearch, searchUnits, filterState }) => {
   const [search, setSearch] = useState('');
   const firstRender = useRef(true);
   useLayoutEffect(() => {
     if (!firstRender.current) {
-      const filteredUnits = allUnits.filter((unit) =>
+      const filteredUnits = arrayToSearch.filter((unit) =>
         unit.toLowerCase().includes(search.toLowerCase())
       );
-      searchUnits(filteredUnits);
+      searchUnits(filteredUnits, filterState);
     } else {
       firstRender.current = false;
       return;
@@ -31,16 +31,12 @@ const Search = ({ allUnits, searchUnits }) => {
     />
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    allUnits: state.allUnits,
-  };
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    searchUnits: (filtered) => dispatch(actions.searchUnits(filtered)),
+    searchUnits: (filtered, filterState) =>
+      dispatch(actions.searchUnits(filtered, filterState)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(null, mapDispatchToProps)(Search);

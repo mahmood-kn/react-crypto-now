@@ -18,7 +18,7 @@ const Modal = ({ showModal, toggleModalAction, children }) => {
     <div
       className={`${classes.Modal}`}
       style={{ display: `${isOpen ? 'block' : 'none'}` }}>
-      <div className={`${classes.ModalContent} relative`}>
+      <div className={`${classes.ModalContent} relative text-black`}>
         <span
           onClick={toggleModalAction}
           className='material-icons cursor-pointer right-4 top-3 absolute'>

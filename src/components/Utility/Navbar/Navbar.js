@@ -1,17 +1,13 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import classes from './Navbar.module.css';
-import Currency from '../Currency';
 import Lang from './Lang';
 import * as actions from '../../../store/actions';
 import { connect } from 'react-redux';
-import Modal from '../Modal/Modal';
-import ModalNavUnitContent from '../Modal/ModalNavUnitContent';
+import ChangeUnit from './ChangeUnit';
+import AddCurrency from './AddCurrency';
 
-const Navbar = ({ homepage, cryptoPage, unit, toggleModal, showModal }) => {
-  const handleClick = () => {
-    toggleModal();
-  };
+const Navbar = ({ homepage, cryptoPage }) => {
   return (
     <nav
       className={`${
@@ -36,31 +32,24 @@ const Navbar = ({ homepage, cryptoPage, unit, toggleModal, showModal }) => {
             Converter
           </NavLink>
           {(homepage || cryptoPage) && (
-            <Currency
-              classes={`${classes.HoverEffect} mx-3 bg-transparent focus:outline-none cursor-pointer `}
-              unit={unit}
-              clicked={handleClick}
-            />
+            <ChangeUnit classes={classes.HoverEffect} />
           )}
           <Lang />
+          {homepage && <AddCurrency classes={`${classes.HoverEffect}`} />}
         </div>
       </div>
-      <Modal showModal={showModal} children={<ModalNavUnitContent />} />
     </nav>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    unit: state.unit,
     loading: state.loading,
-    showModal: state.showModal,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     loadCurrency: (symbol) => dispatch(actions.loadCurrencyPage(symbol)),
-    toggleModal: () => dispatch(actions.toggleModal()),
   };
 };
 

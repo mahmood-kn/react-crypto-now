@@ -14,9 +14,11 @@ const initialState = {
   showModal: false,
   allUnits: [],
   allUnitsWithFilter: [],
-  cryptoToLoad: ['BTC', 'ETH', 'XRP', 'BNB', 'DOGE'],
+  cryptoToLoad: ['BTC', 'POA'],
   rates: null,
   currentRate: [{ currency: 'BTC', rate: '' }],
+  cryptoes: [],
+  filteredCryptoes: [],
 };
 
 const store = createStore(

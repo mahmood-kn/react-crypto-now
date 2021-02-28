@@ -8,9 +8,8 @@ import Table from './Table';
 const HomePage = ({ onLoadApi, unit, cryptoToLoad }) => {
   useEffect(() => {
     onLoadApi(unit, cryptoToLoad);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [unit]);
+  }, [unit, cryptoToLoad]);
   return (
     <div>
       <Navbar homepage />
