@@ -8,9 +8,16 @@ const Modal = ({ showModal, toggleModalAction, children }) => {
   useEffect(() => {
     setIsOpen(showModal);
     window.onclick = (e) => {
-      if (e.target.classList.contains(classes.Modal)) {
+      if (showModal && e.target.classList.contains(classes.Modal)) {
         toggleModalAction();
       }
+    };
+    return () => {
+      window.onclick = (e) => {
+        if (showModal && e.target.classList.contains(classes.Modal)) {
+          toggleModalAction();
+        }
+      };
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showModal]);

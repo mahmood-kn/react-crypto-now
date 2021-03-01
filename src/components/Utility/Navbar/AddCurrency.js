@@ -3,16 +3,22 @@ import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
 import ModalAddCurrency from '../Modal/ModalAddCurrency';
 
-const AddCurrency = ({ classes, toggleModal, showModal }) => {
+const AddCurrency = ({
+  classes,
+  toggleModal,
+  showModal,
+  addCurrencyBtn,
+  addCurrencyBtnAction,
+}) => {
   const btnClick = useRef(false);
   useEffect(() => {
-    if (showModal === false) {
-      btnClick.current = false;
+    if (showModal === false && addCurrencyBtn !== false) {
+      addCurrencyBtnAction(false);
     }
   }, [showModal]);
   const handleClick = () => {
     toggleModal();
-    btnClick.current = true;
+    addCurrencyBtnAction(true);
   };
   return (
     <>
@@ -21,7 +27,6 @@ const AddCurrency = ({ classes, toggleModal, showModal }) => {
         onClick={handleClick}>
         Add Currency
       </button>
-      {btnClick.current ? <ModalAddCurrency /> : null}
     </>
   );
 };
@@ -29,11 +34,13 @@ const AddCurrency = ({ classes, toggleModal, showModal }) => {
 const mapStateToProps = (state) => {
   return {
     showModal: state.showModal,
+    addCurrencyBtn: state.addCurrencyBtn,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleModal: () => dispatch(actions.toggleModal()),
+    addCurrencyBtnAction: (val) => dispatch(actions.addCurrencyBtnAction(val)),
   };
 };
 

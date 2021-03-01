@@ -10,4 +10,6 @@ export {
   saveUnits,
   addCurrency,
   getCryptoes,
+  addCurrencyBtnAction,
+  changeUnitBtnAction,
 } from './crypto';

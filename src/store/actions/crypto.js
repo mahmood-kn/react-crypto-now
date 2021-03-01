@@ -85,6 +85,18 @@ export const getCryptoes = () => {
     }
   };
 };
+export const addCurrencyBtnAction = (value) => {
+  return {
+    type: types.ADD_CURRENCY_BTN,
+    payload: value,
+  };
+};
+export const changeUnitBtnAction = (value) => {
+  return {
+    type: types.CHANGE_UNIT_BTN,
+    payload: value,
+  };
+};
 
 export const saveCtyotoes = (cryptoes) => {
   return {

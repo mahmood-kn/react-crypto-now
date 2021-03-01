@@ -19,6 +19,8 @@ const initialState = {
   currentRate: [{ currency: 'BTC', rate: '' }],
   cryptoes: [],
   filteredCryptoes: [],
+  addCurrencyBtn: false,
+  changeUnitBtn: false,
 };
 
 const store = createStore(

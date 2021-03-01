@@ -24,7 +24,7 @@ const ModalContent = ({
         Show Prices In Another Currency
       </h1>
       <Search arrayToSearch={allUnits} filterState={'allUnitsWithFilter'} />
-      <div>
+      <div className='text-center'>
         {!loading && allUnits.length > 0
           ? allUnitsWithFilter.map((unit) => (
               <UnitBtn key={unit} unit={unit} clicked={handleClick} />

@@ -7,14 +7,25 @@ import { NavLink, Link } from 'react-router-dom';
 import ChangeUnit from './ChangeUnit';
 import AddCurrency from './AddCurrency';
 import Hamburger from './Hamburger';
+import ModalNavUnitContent from '../Modal/ModalNavUnitContent';
+import ModalAddCurrency from '../Modal/ModalAddCurrency';
 
-const Navbar = ({ homepage, cryptoPage }) => {
+const Navbar = ({ homepage, cryptoPage, changeUnitBtn, addCurrencyBtn }) => {
   const [showMenu, setShowMenu] = useState(false);
   useEffect(() => {
     window.onclick = (e) => {
+      console.log(e.target);
       if (showMenu && !e.target.classList.contains('HamburgerMenu')) {
         setShowMenu(false);
       }
+    };
+    return () => {
+      window.onclick = (e) => {
+        console.log(e.target);
+        if (showMenu && !e.target.classList.contains('HamburgerMenu')) {
+          setShowMenu(false);
+        }
+      };
     };
   }, [showMenu]);
   const hamburgerClicked = () => {
@@ -66,6 +77,8 @@ const Navbar = ({ homepage, cryptoPage }) => {
         homepage={homepage}
         cryptoPage={cryptoPage}
       />
+      {changeUnitBtn ? <ModalNavUnitContent /> : null}
+      {addCurrencyBtn ? <ModalAddCurrency /> : null}
     </nav>
   );
 };
@@ -73,6 +86,8 @@ const Navbar = ({ homepage, cryptoPage }) => {
 const mapStateToProps = (state) => {
   return {
     loading: state.loading,
+    changeUnitBtn: state.changeUnitBtn,
+    addCurrencyBtn: state.addCurrencyBtn,
   };
 };
 const mapDispatchToProps = (dispatch) => {

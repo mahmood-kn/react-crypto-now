@@ -21,7 +21,7 @@ const ModalContent = ({
     <Modal showModal={showModal}>
       <h1 className='text-2xl font-bold text-center '>Add New Currency</h1>
       <Search arrayToSearch={cryptoes} filterState={'filteredCryptoes'} />
-      <div>
+      <div className='text-center'>
         {!loading && cryptoes.length > 0
           ? filteredCryptoes.map((unit) => (
               <UnitBtn key={unit} unit={unit} clicked={handleClick} />

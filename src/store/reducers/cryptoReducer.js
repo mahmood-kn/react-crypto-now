@@ -77,6 +77,16 @@ const cryptoReducer = (state, action) => {
         ...state,
         filteredCryptoes: action.payload,
       };
+    case types.CHANGE_UNIT_BTN:
+      return {
+        ...state,
+        changeUnitBtn: action.payload,
+      };
+    case types.ADD_CURRENCY_BTN:
+      return {
+        ...state,
+        addCurrencyBtn: action.payload,
+      };
     default:
       return state;
   }
