@@ -46,7 +46,7 @@ const Converter = ({
       <Navbar />
       <ConverterMainSection />
       <div className='flex flex-col justify-center items-center h-96'>
-        <div className='flex w-2/4 '>
+        <div className='flex md:w-2/4 w-10/12'>
           <Currency
             classes={`rounded-tl-md rounded-bl-md px-4 outline-none bg-white focus:outline-none cursor-not-allowed `}
             disabled
@@ -62,7 +62,7 @@ const Converter = ({
           ;
         </div>
         <SwapBtn />
-        <div className='flex w-2/4 '>
+        <div className='flex md:w-2/4 w-10/12'>
           <Currency
             classes={`rounded-tl-md rounded-bl-md px-4 outline-none bg-white focus:outline-none `}
             unit={currentRate ? currentRate[0].currency : ''}

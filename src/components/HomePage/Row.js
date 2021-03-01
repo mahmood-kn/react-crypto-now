@@ -7,10 +7,15 @@ import Price from '../Utility/Price';
 const Row = ({ data, onClickHandler }) => {
   return (
     <tr
-      className='p-8 border-b border-gray-300 cursor-pointer'
+      className='border-b border-gray-300 cursor-pointer'
       onClick={onClickHandler}>
-      <td className='pl-7'>
-        <Logo className='mr-12' logo={data.logo_url} size={12} alt={data.id} />
+      <td className='md:pl-7'>
+        <Logo
+          className='md:mr-8'
+          logo={data.logo_url}
+          size={12}
+          alt={data.id}
+        />
       </td>
       <td>
         <Name name={data.name} symbol={data.symbol} />
@@ -18,7 +23,7 @@ const Row = ({ data, onClickHandler }) => {
       <td>
         <Price price={+data.price} />
       </td>
-      <td>
+      <td className={`md:block hidden`}>
         <Change ChangePct={data['1d'].price_change_pct} />
       </td>
     </tr>

@@ -12,7 +12,7 @@ const CryptoPage = ({ currency }) => {
   return (
     <>
       {currency !== null && (
-        <div className='flex flex-col w-full container mx-auto h-screen -m-24 justify-center text-white'>
+        <div className='md:flex md:flex-col md:w-full container md:mx-auto md:h-screen md:-m-24 md:justify-center text-white flex flex-col justify-center items-center md:items-stretch p-5 -mt-8'>
           <div className='flex py-10 items-center'>
             <Logo logo={currency.logo_url} size={20} alt={currency.id} />
             <Name
@@ -22,16 +22,19 @@ const CryptoPage = ({ currency }) => {
             />
           </div>
           <div>
-            <div className='flex h-20'>
-              <div className='w-1/3 flex justify-between pl-10 items-end'>
-                <Price className='text-3xl' price={+currency.price} />
+            <div className='md:flex h-20'>
+              <div className='md:w-1/3 md:flex md:justify-between md:pl-10 md:items-end text-center md:text-left'>
+                <Price
+                  className='text-3xl mb-2 md:mb-0'
+                  price={+currency.price}
+                />
                 <Unit />
                 <Change
-                  className='text-lg'
+                  className='text-lg my-2 md:my-0'
                   ChangePct={currency['1d'].price_change_pct}
                 />
               </div>
-              <div className='w-2/3'>
+              <div className='md:w-2/3'>
                 <Details
                   marketCapVal={currency.market_cap}
                   marketCapPctVal={currency['1d'].market_cap_change_pct}

@@ -5,7 +5,7 @@ import Unit from '../Utility/Unit';
 
 const Volume = ({ volume, volumePct, unit }) => {
   return (
-    <div className='flex flex-col items-start'>
+    <div className='flex flex-col md:items-start items-center'>
       <span className='uppercase text-sm text-gray-300 '>
         volume <Unit />
       </span>

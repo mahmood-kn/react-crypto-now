@@ -17,7 +17,7 @@ const AddCurrency = ({ classes, toggleModal, showModal }) => {
   return (
     <>
       <button
-        className={`${classes} mx-3 bg-transparent outline-none cursor-pointer focus:outline-none`}
+        className={`${classes} mx-3 bg-transparent outline-none cursor-pointer focus:outline-none  `}
         onClick={handleClick}>
         Add Currency
       </button>

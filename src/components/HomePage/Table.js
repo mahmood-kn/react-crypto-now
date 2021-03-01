@@ -15,7 +15,7 @@ const Table = ({ apiData, history, loading }) => {
   };
   return (
     <table
-      className={`${classes.Table} w-6/12 shadow-md  border absolute  top-2/4 left-1/2  rounded-md  transform -translate-x-1/2 bg-white `}>
+      className={`${classes.Table} w-8/12 shadow-md  border absolute  top-2/4 left-1/2  rounded-md  transform -translate-x-1/2 bg-white `}>
       <thead>
         <tr className='border-b border-gray-300'>
           <th></th>
@@ -23,7 +23,7 @@ const Table = ({ apiData, history, loading }) => {
           <th>
             Price <Unit />
           </th>
-          <th>Change</th>
+          <th className={`md:block hidden`}>Change</th>
         </tr>
       </thead>
       <tbody>

@@ -8,7 +8,7 @@ const MarketCap = ({ marketCap, marketCapPct }) => {
     // console.log(marketCapDetail);
   }, []);
   return (
-    <div className='flex flex-col  items-start '>
+    <div className='flex flex-col  md:items-start items-center my-3 md:my-0 border-t-4 border-yellow-400 md:border-none pt-5 md:pt-0'>
       <span className='uppercase text-sm text-gray-300 '>
         market cap <Unit />
       </span>

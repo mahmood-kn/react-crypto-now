@@ -23,7 +23,7 @@ const Search = ({ arrayToSearch, searchUnits, filterState }) => {
   };
   return (
     <input
-      className='border border-gray-300 w-6/12  rounded-lg py-2 px-4 my-4 mx-auto block '
+      className='border border-gray-300 md:w-6/12 w-full rounded-lg py-2 px-4 my-4 mx-auto block '
       type='text'
       placeholder='Search...'
       value={search}

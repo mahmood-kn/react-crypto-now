@@ -20,11 +20,11 @@ const ModalContent = ({
   };
   return (
     <Modal showModal={showModal}>
-      <h1 className='text-2xl font-bold text-center '>
+      <h1 className='md:text-2xl text-xl font-bold text-center '>
         Other Currencies To Convert
       </h1>
       <Search arrayToSearch={allUnits} filterState={'allUnitsWithFilter'} />
-      <div>
+      <div className='text-center'>
         {!loading && rates !== null
           ? allUnitsWithFilter.map((unit) => (
               <UnitBtn key={unit} unit={unit} clicked={handleClick} />
