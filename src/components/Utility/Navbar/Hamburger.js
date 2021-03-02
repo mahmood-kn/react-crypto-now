@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import React, { useRef } from 'react';
+import { NavLink } from 'react-router-dom';
 import ChangeUnit from './ChangeUnit';
 import AddCurrency from './AddCurrency';
 import classes from './Navbar.module.css';
@@ -16,14 +16,7 @@ const Hamburger = ({
 }) => {
   const clickRef = useRef();
   useClickOutside(clickRef, onClickOutside);
-  // const [showMenuInternal, setShowMenuInternal] = useState(false);
-  // useEffect(() => {
-  //   if (showMenu) {
-  //     setShowMenuInternal(true);
-  //   } else {
-  //     setShowMenuInternal(false);
-  //   }
-  // }, [showMenu]);
+
   const handleClose = () => {
     setShowMenu(false);
   };

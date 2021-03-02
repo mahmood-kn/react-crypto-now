@@ -1,29 +1,13 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import classes from './Modal.module.css';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
 import useClickOutside from '../../../utility/hooks/useClickOutside';
 
 const Modal = ({ showModal, toggleModalAction, children, onClickOutside }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const clickRef = useRef();
   useClickOutside(clickRef, onClickOutside);
-  useEffect(() => {
-    // setIsOpen(showModal);
-    // window.onclick = (e) => {
-    //   if (showModal && e.target.classList.contains(classes.Modal)) {
-    //     toggleModalAction();
-    //   }
-    // };
-    // return () => {
-    //   window.onclick = (e) => {
-    //     if (showModal && e.target.classList.contains(classes.Modal)) {
-    //       toggleModalAction();
-    //     }
-    //   };
-    // };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showModal]);
+
   return (
     <div
       className={`${classes.Modal}`}

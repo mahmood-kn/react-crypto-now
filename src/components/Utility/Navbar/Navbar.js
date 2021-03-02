@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import classes from './Navbar.module.css';
-// import Lang from './Lang';
 import * as actions from '../../../store/actions';
 import { connect } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
@@ -18,30 +17,6 @@ const Navbar = ({
   setShowMenu,
   showMenu,
 }) => {
-  // useEffect(() => {
-  //   window.onclick = (e) => {
-  //     if (
-  //       showMenu &&
-  //       !e.target.classList.contains('HamburgerMenu') &&
-  //       !e.target.classList.contains('HamburgerIcon')
-  //     ) {
-  //       setShowMenu(false);
-  //     }
-  //   };
-  //   return () => {
-  //     window.onclick = (e) => {
-  //       console.log(e.target);
-  //       if (
-  //         showMenu &&
-  //         !e.target.classList.contains('HamburgerMenu') &&
-  //         !e.target.classList.contains('HamburgerIcon')
-  //       ) {
-  //         setShowMenu(false);
-  //       }
-  //     };
-  //   };
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [showMenu]);
   const hamburgerClicked = () => {
     setShowMenu(true);
   };
@@ -78,7 +53,6 @@ const Navbar = ({
               classes={`${classes.HoverEffect} md:inline-block hidden`}
             />
           )}
-          {/* <Lang /> */}
         </div>
       </div>
       <span
