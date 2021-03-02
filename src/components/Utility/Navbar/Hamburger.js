@@ -3,23 +3,25 @@ import { NavLink, Link } from 'react-router-dom';
 import ChangeUnit from './ChangeUnit';
 import AddCurrency from './AddCurrency';
 import classes from './Navbar.module.css';
+import { connect } from 'react-redux';
+import * as actions from '../../../store/actions';
 
-const Hamburger = ({ showMenu, homepage, cryptoPage }) => {
-  const [showMenuInternal, setShowMenuInternal] = useState(false);
-  useEffect(() => {
-    if (showMenu) {
-      setShowMenuInternal(true);
-    } else {
-      setShowMenuInternal(false);
-    }
-  }, [showMenu]);
+const Hamburger = ({ showMenu, homepage, cryptoPage, setShowMenu }) => {
+  // const [showMenuInternal, setShowMenuInternal] = useState(false);
+  // useEffect(() => {
+  //   if (showMenu) {
+  //     setShowMenuInternal(true);
+  //   } else {
+  //     setShowMenuInternal(false);
+  //   }
+  // }, [showMenu]);
   const handleClose = () => {
-    setShowMenuInternal(false);
+    setShowMenu(false);
   };
   return (
     <div
       className={`HamburgerMenu absolute top-0 left-0 h-full w-1/2 opacity-95 bg-gray-700 z-50 transform text-white p-5 transition-transform  ${
-        showMenuInternal ? 'translate-x-0' : '-translate-x-full'
+        showMenu ? 'translate-x-0' : '-translate-x-full'
       }`}>
       <NavLink
         exact
@@ -53,4 +55,15 @@ const Hamburger = ({ showMenu, homepage, cryptoPage }) => {
   );
 };
 
-export default Hamburger;
+const mapStateToProps = (state) => {
+  return {
+    showMenu: state.showMenu,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setShowMenu: (val) => dispatch(actions.setShowMenu(val)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Hamburger);

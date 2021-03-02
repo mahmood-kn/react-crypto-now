@@ -1,7 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
-import ModalAddCurrency from '../Modal/ModalAddCurrency';
 
 const AddCurrency = ({
   classes,
@@ -10,11 +9,11 @@ const AddCurrency = ({
   addCurrencyBtn,
   addCurrencyBtnAction,
 }) => {
-  const btnClick = useRef(false);
   useEffect(() => {
     if (showModal === false && addCurrencyBtn !== false) {
       addCurrencyBtnAction(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showModal]);
   const handleClick = () => {
     toggleModal();

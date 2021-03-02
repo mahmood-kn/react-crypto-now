@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import * as actions from '../../../store/actions';
 import { connect } from 'react-redux';
 import Currency from '../Currency';
@@ -11,11 +11,11 @@ const ChangeUnit = ({
   changeUnitBtnAction,
   changeUnitBtn,
 }) => {
-  const btnClick = useRef(false);
   useEffect(() => {
     if (showModal === false && changeUnitBtn !== false) {
       changeUnitBtnAction(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showModal]);
   const handleClick = () => {
     changeUnitBtnAction(true);

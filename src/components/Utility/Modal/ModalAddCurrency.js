@@ -12,10 +12,15 @@ const ModalContent = ({
   filteredCryptoes,
   showModal,
   cryptoes,
+  showMenu,
+  setShowMenu,
 }) => {
   const handleClick = (e) => {
     addCurrency(e.target.value);
     toggleModal();
+    if (showMenu) {
+      setShowMenu(false);
+    }
   };
   return (
     <Modal showModal={showModal}>
@@ -39,12 +44,14 @@ const mapStateToProps = (state) => {
     allUnitsWithFilter: state.allUnitsWithFilter,
     cryptoes: state.cryptoes,
     filteredCryptoes: state.filteredCryptoes,
+    showMenu: state.showMenu,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleModal: () => dispatch(actions.toggleModal()),
     addCurrency: (currency) => dispatch(actions.addCurrency(currency)),
+    setShowMenu: (val) => dispatch(actions.setShowMenu(val)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ModalContent);

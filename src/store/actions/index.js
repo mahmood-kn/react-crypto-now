@@ -12,4 +12,5 @@ export {
   getCryptoes,
   addCurrencyBtnAction,
   changeUnitBtnAction,
+  setShowMenu,
 } from './crypto';

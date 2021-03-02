@@ -13,10 +13,15 @@ const ModalContent = ({
   allUnitsWithFilter,
   showModal,
   allUnits,
+  showMenu,
+  setShowMenu,
 }) => {
   const handleClick = (e) => {
     changeCurrentRate(e.target.value);
     toggleModal();
+    if (showMenu) {
+      setShowMenu(false);
+    }
   };
   return (
     <Modal showModal={showModal}>
@@ -37,6 +42,7 @@ const ModalContent = ({
 const mapStateToProps = (state) => {
   return {
     showModal: state.showModal,
+    showMenu: state.showMenu,
     loading: state.loading,
     rates: state.rates,
     allUnitsWithFilter: state.allUnitsWithFilter,
@@ -47,6 +53,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     toggleModal: () => dispatch(actions.toggleModal()),
     changeCurrentRate: (rate) => dispatch(actions.changeCurrentRate(rate)),
+    setShowMenu: (val) => dispatch(actions.setShowMenu(val)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ModalContent);

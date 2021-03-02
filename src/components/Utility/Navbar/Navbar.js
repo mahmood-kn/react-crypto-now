@@ -10,26 +10,39 @@ import Hamburger from './Hamburger';
 import ModalNavUnitContent from '../Modal/ModalNavUnitContent';
 import ModalAddCurrency from '../Modal/ModalAddCurrency';
 
-const Navbar = ({ homepage, cryptoPage, changeUnitBtn, addCurrencyBtn }) => {
-  const [showMenu, setShowMenu] = useState(false);
+const Navbar = ({
+  homepage,
+  cryptoPage,
+  changeUnitBtn,
+  addCurrencyBtn,
+  setShowMenu,
+  showMenu,
+}) => {
   useEffect(() => {
     window.onclick = (e) => {
-      console.log(e.target);
-      if (showMenu && !e.target.classList.contains('HamburgerMenu')) {
+      if (
+        showMenu &&
+        !e.target.classList.contains('HamburgerMenu') &&
+        !e.target.classList.contains('HamburgerIcon')
+      ) {
         setShowMenu(false);
       }
     };
     return () => {
       window.onclick = (e) => {
         console.log(e.target);
-        if (showMenu && !e.target.classList.contains('HamburgerMenu')) {
+        if (
+          showMenu &&
+          !e.target.classList.contains('HamburgerMenu') &&
+          !e.target.classList.contains('HamburgerIcon')
+        ) {
           setShowMenu(false);
         }
       };
     };
   }, [showMenu]);
   const hamburgerClicked = () => {
-    setShowMenu(!showMenu);
+    setShowMenu(true);
   };
   return (
     <nav
@@ -68,15 +81,11 @@ const Navbar = ({ homepage, cryptoPage, changeUnitBtn, addCurrencyBtn }) => {
         </div>
       </div>
       <span
-        className='material-icons inline-block absolute top-5 cursor-pointer left-4 text-4xl text-white md:hidden'
+        className='material-icons HamburgerIcon inline-block absolute top-5 cursor-pointer left-4 text-4xl text-white md:hidden'
         onClick={hamburgerClicked}>
         menu
       </span>
-      <Hamburger
-        showMenu={showMenu}
-        homepage={homepage}
-        cryptoPage={cryptoPage}
-      />
+      <Hamburger homepage={homepage} cryptoPage={cryptoPage} />
       {changeUnitBtn ? <ModalNavUnitContent /> : null}
       {addCurrencyBtn ? <ModalAddCurrency /> : null}
     </nav>
@@ -88,11 +97,13 @@ const mapStateToProps = (state) => {
     loading: state.loading,
     changeUnitBtn: state.changeUnitBtn,
     addCurrencyBtn: state.addCurrencyBtn,
+    showMenu: state.showMenu,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     loadCurrency: (symbol) => dispatch(actions.loadCurrencyPage(symbol)),
+    setShowMenu: (val) => dispatch(actions.setShowMenu(val)),
   };
 };
 

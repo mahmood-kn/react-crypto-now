@@ -13,3 +13,4 @@ export const GET_CRYPTOES = 'GET_CRYPTOES';
 export const FILTER_CRYPTOES = 'FILTER_CRYPTOES';
 export const CHANGE_UNIT_BTN = 'CHANGE_UNIT_BTN';
 export const ADD_CURRENCY_BTN = 'ADD_CURRENCY_BTN';
+export const SET_SHOW_MENU = 'SET_SHOW_MENU';

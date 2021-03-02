@@ -13,10 +13,15 @@ const ModalContent = ({
   allUnitsWithFilter,
   cryptoToLoad,
   showModal,
+  showMenu,
+  setShowMenu,
 }) => {
   const handleClick = (e) => {
     changeUnit(e.target.value, cryptoToLoad);
     toggleModal();
+    if (showMenu) {
+      setShowMenu(false);
+    }
   };
   return (
     <Modal showModal={showModal}>
@@ -41,6 +46,7 @@ const mapStateToProps = (state) => {
     loading: state.loading,
     cryptoToLoad: state.cryptoToLoad,
     showModal: state.showModal,
+    showMenu: state.showMenu,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -48,6 +54,7 @@ const mapDispatchToProps = (dispatch) => {
     changeUnit: (unit, cryptoToLoad) =>
       dispatch(actions.changeUnit(unit, cryptoToLoad)),
     toggleModal: () => dispatch(actions.toggleModal()),
+    setShowMenu: (val) => dispatch(actions.setShowMenu(val)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ModalContent);

@@ -8,9 +8,17 @@ import CryptoPage from './components/CryptoPage/CryptoPage';
 import { connect } from 'react-redux';
 import * as actions from './store/actions';
 
-function App({ rates, getRates, allUnits, saveUnits, getCryptoes, cryptoes }) {
+function App({
+  rates,
+  getRates,
+  allUnits,
+  saveUnits,
+  getCryptoes,
+  cryptoes,
+  showModal,
+}) {
   useEffect(() => {
-    if (rates === null) {
+    if (rates === null && showModal) {
       getRates();
     }
 
@@ -22,13 +30,13 @@ function App({ rates, getRates, allUnits, saveUnits, getCryptoes, cryptoes }) {
       saveUnits(currencies);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rates]);
+  }, [rates, showModal]);
   useEffect(() => {
-    if (cryptoes.length === 0) {
+    if (cryptoes.length === 0 && showModal) {
       getCryptoes();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [showModal]);
   return (
     <>
       <Router>
@@ -46,6 +54,7 @@ const mapStateToProps = (state) => {
     rates: state.rates,
     allUnits: state.allUnits,
     cryptoes: state.cryptoes,
+    showModal: state.showModal,
   };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -1,3 +1,4 @@
+import { act } from 'react-dom/test-utils';
 import * as types from '../actions/types';
 
 const cryptoReducer = (state, action) => {
@@ -86,6 +87,11 @@ const cryptoReducer = (state, action) => {
       return {
         ...state,
         addCurrencyBtn: action.payload,
+      };
+    case types.SET_SHOW_MENU:
+      return {
+        ...state,
+        showMenu: action.payload,
       };
     default:
       return state;

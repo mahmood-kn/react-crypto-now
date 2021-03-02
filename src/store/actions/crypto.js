@@ -178,3 +178,10 @@ export const toggleModal = () => {
     type: types.TOGGLE_MODAL,
   };
 };
+
+export const setShowMenu = (val) => {
+  return {
+    type: types.SET_SHOW_MENU,
+    payload: val,
+  };
+};

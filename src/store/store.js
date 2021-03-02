@@ -21,6 +21,7 @@ const initialState = {
   filteredCryptoes: [],
   addCurrencyBtn: false,
   changeUnitBtn: false,
+  showMenu: false,
 };
 
 const store = createStore(
