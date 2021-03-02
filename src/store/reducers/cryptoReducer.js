@@ -1,4 +1,3 @@
-import { act } from 'react-dom/test-utils';
 import * as types from '../actions/types';
 
 const cryptoReducer = (state, action) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import classes from './Navbar.module.css';
 // import Lang from './Lang';
 import * as actions from '../../../store/actions';
@@ -40,6 +40,7 @@ const Navbar = ({
         }
       };
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showMenu]);
   const hamburgerClicked = () => {
     setShowMenu(true);
