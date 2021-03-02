@@ -15,9 +15,11 @@ const Details = ({
   }, []);
   return (
     <div className='md:flex md:flex-row md:justify-between md:text-center md:ml-20 flex flex-col justify-center items-center '>
-      <MarketCap marketCap={marketCapVal} marketCapPct={marketCapPctVal} />
-      <Volume volume={volumeVal} volumePct={volumePctVal} />
-      <Rank rank={rankVal} />
+      {marketCapVal && (
+        <MarketCap marketCap={marketCapVal} marketCapPct={marketCapPctVal} />
+      )}
+      {volumeVal && <Volume volume={volumeVal} volumePct={volumePctVal} />}
+      {rankVal && <Rank rank={rankVal} />}
     </div>
   );
 };

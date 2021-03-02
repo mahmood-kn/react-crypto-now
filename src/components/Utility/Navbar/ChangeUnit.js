@@ -18,8 +18,8 @@ const ChangeUnit = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showModal]);
   const handleClick = () => {
-    changeUnitBtnAction(true);
     toggleModal(true);
+    changeUnitBtnAction(true);
   };
   return (
     <>
