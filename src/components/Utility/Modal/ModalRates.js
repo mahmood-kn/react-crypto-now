@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import UnitBtn from '../UnitBtn';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
@@ -16,15 +16,28 @@ const ModalContent = ({
   showMenu,
   setShowMenu,
 }) => {
+  const [rendered, setRendered] = useState(false);
+  useEffect(() => {
+    setRendered(true);
+    return () => {
+      setRendered(false);
+    };
+  }, []);
   const handleClick = (e) => {
     changeCurrentRate(e.target.value);
-    toggleModal();
+    toggleModal(false);
     if (showMenu) {
       setShowMenu(false);
     }
   };
   return (
-    <Modal showModal={showModal}>
+    <Modal
+      showModal={showModal}
+      onClickOutside={() => {
+        if (rendered) {
+          toggleModal(false);
+        }
+      }}>
       <h1 className='md:text-2xl text-xl font-bold text-center '>
         Other Currencies To Convert
       </h1>
@@ -51,7 +64,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleModal: () => dispatch(actions.toggleModal()),
+    toggleModal: (val) => dispatch(actions.toggleModal(val)),
     changeCurrentRate: (rate) => dispatch(actions.changeCurrentRate(rate)),
     setShowMenu: (val) => dispatch(actions.setShowMenu(val)),
   };

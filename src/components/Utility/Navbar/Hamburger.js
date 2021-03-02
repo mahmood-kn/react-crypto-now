@@ -1,12 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import ChangeUnit from './ChangeUnit';
 import AddCurrency from './AddCurrency';
 import classes from './Navbar.module.css';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
+import useClickOutside from '../../../utility/hooks/useClickOutside';
 
-const Hamburger = ({ showMenu, homepage, cryptoPage, setShowMenu }) => {
+const Hamburger = ({
+  showMenu,
+  homepage,
+  cryptoPage,
+  setShowMenu,
+  onClickOutside,
+}) => {
+  const clickRef = useRef();
+  useClickOutside(clickRef, onClickOutside);
   // const [showMenuInternal, setShowMenuInternal] = useState(false);
   // useEffect(() => {
   //   if (showMenu) {
@@ -22,7 +31,8 @@ const Hamburger = ({ showMenu, homepage, cryptoPage, setShowMenu }) => {
     <div
       className={`HamburgerMenu absolute top-0 left-0 h-full w-1/2 opacity-95 bg-gray-700 z-50 transform text-white p-5 transition-transform  ${
         showMenu ? 'translate-x-0' : '-translate-x-full'
-      }`}>
+      }`}
+      ref={clickRef}>
       <NavLink
         exact
         activeClassName={classes.MyActive}

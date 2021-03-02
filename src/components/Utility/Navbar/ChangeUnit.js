@@ -19,7 +19,7 @@ const ChangeUnit = ({
   }, [showModal]);
   const handleClick = () => {
     changeUnitBtnAction(true);
-    toggleModal();
+    toggleModal(true);
   };
   return (
     <>
@@ -41,7 +41,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleModal: () => dispatch(actions.toggleModal()),
+    toggleModal: (val) => dispatch(actions.toggleModal(val)),
     changeUnitBtnAction: (val) => dispatch(actions.changeUnitBtnAction(val)),
   };
 };

@@ -13,11 +13,16 @@ const Converter = ({
   showModal,
   changeCurrentRate,
   rates,
+  showMenu,
+  setShowMenu,
 }) => {
   const [usd, setUsd] = useState('');
   const [endCurr, setEndCurr] = useState('');
   const btnClick = useRef(false);
   useEffect(() => {
+    if (showMenu) {
+      setShowMenu(false);
+    }
     if (rates !== null && currentRate[0].rate === '') {
       changeCurrentRate('BTC');
     }
@@ -28,7 +33,7 @@ const Converter = ({
   }, [showModal, rates]);
 
   const handleClick = () => {
-    toggleModal();
+    toggleModal(true);
     btnClick.current = true;
   };
 
@@ -89,11 +94,13 @@ const mapStateToProps = (state) => {
     rates: state.rates,
     currentRate: state.currentRate,
     showModal: state.showModal,
+    showMenu: state.showMenu,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleModal: () => dispatch(actions.toggleModal()),
+    toggleModal: (val) => dispatch(actions.toggleModal(val)),
+    setShowMenu: (val) => dispatch(actions.setShowMenu(val)),
     changeCurrentRate: (unit) => dispatch(actions.changeCurrentRate(unit)),
   };
 };

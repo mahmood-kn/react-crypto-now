@@ -28,7 +28,7 @@ const cryptoReducer = (state, action) => {
     case types.TOGGLE_MODAL:
       return {
         ...state,
-        showModal: !state.showModal,
+        showModal: action.payload,
       };
     case types.CHANGE_UNIT_STATE:
       return {

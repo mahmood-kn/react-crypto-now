@@ -173,9 +173,10 @@ export const setLoading = () => {
   };
 };
 
-export const toggleModal = () => {
+export const toggleModal = (val) => {
   return {
     type: types.TOGGLE_MODAL,
+    payload: val,
   };
 };
 

@@ -18,30 +18,30 @@ const Navbar = ({
   setShowMenu,
   showMenu,
 }) => {
-  useEffect(() => {
-    window.onclick = (e) => {
-      if (
-        showMenu &&
-        !e.target.classList.contains('HamburgerMenu') &&
-        !e.target.classList.contains('HamburgerIcon')
-      ) {
-        setShowMenu(false);
-      }
-    };
-    return () => {
-      window.onclick = (e) => {
-        console.log(e.target);
-        if (
-          showMenu &&
-          !e.target.classList.contains('HamburgerMenu') &&
-          !e.target.classList.contains('HamburgerIcon')
-        ) {
-          setShowMenu(false);
-        }
-      };
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showMenu]);
+  // useEffect(() => {
+  //   window.onclick = (e) => {
+  //     if (
+  //       showMenu &&
+  //       !e.target.classList.contains('HamburgerMenu') &&
+  //       !e.target.classList.contains('HamburgerIcon')
+  //     ) {
+  //       setShowMenu(false);
+  //     }
+  //   };
+  //   return () => {
+  //     window.onclick = (e) => {
+  //       console.log(e.target);
+  //       if (
+  //         showMenu &&
+  //         !e.target.classList.contains('HamburgerMenu') &&
+  //         !e.target.classList.contains('HamburgerIcon')
+  //       ) {
+  //         setShowMenu(false);
+  //       }
+  //     };
+  //   };
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [showMenu]);
   const hamburgerClicked = () => {
     setShowMenu(true);
   };
@@ -86,7 +86,15 @@ const Navbar = ({
         onClick={hamburgerClicked}>
         menu
       </span>
-      <Hamburger homepage={homepage} cryptoPage={cryptoPage} />
+      <Hamburger
+        homepage={homepage}
+        cryptoPage={cryptoPage}
+        onClickOutside={() => {
+          if (showMenu) {
+            setShowMenu(false);
+          }
+        }}
+      />
       {changeUnitBtn ? <ModalNavUnitContent /> : null}
       {addCurrencyBtn ? <ModalAddCurrency /> : null}
     </nav>

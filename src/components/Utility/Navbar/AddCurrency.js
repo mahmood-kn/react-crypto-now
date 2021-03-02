@@ -16,7 +16,7 @@ const AddCurrency = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showModal]);
   const handleClick = () => {
-    toggleModal();
+    toggleModal(true);
     addCurrencyBtnAction(true);
   };
   return (
@@ -38,7 +38,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleModal: () => dispatch(actions.toggleModal()),
+    toggleModal: (val) => dispatch(actions.toggleModal(val)),
     addCurrencyBtnAction: (val) => dispatch(actions.addCurrencyBtnAction(val)),
   };
 };

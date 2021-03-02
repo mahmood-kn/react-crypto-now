@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import UnitBtn from '../UnitBtn';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
@@ -14,16 +14,30 @@ const ModalContent = ({
   cryptoes,
   showMenu,
   setShowMenu,
+  addCurrencyBtn,
 }) => {
+  const [rendered, setRendered] = useState(false);
+  useEffect(() => {
+    setRendered(true);
+    return () => {
+      setRendered(false);
+    };
+  }, []);
   const handleClick = (e) => {
     addCurrency(e.target.value);
-    toggleModal();
+    toggleModal(false);
     if (showMenu) {
       setShowMenu(false);
     }
   };
   return (
-    <Modal showModal={showModal}>
+    <Modal
+      showModal={showModal}
+      onClickOutside={() => {
+        if (rendered) {
+          toggleModal(false);
+        }
+      }}>
       <h1 className='text-2xl font-bold text-center '>Add New Currency</h1>
       <Search arrayToSearch={cryptoes} filterState={'filteredCryptoes'} />
       <div className='text-center'>
@@ -45,11 +59,12 @@ const mapStateToProps = (state) => {
     cryptoes: state.cryptoes,
     filteredCryptoes: state.filteredCryptoes,
     showMenu: state.showMenu,
+    addCurrencyBtn: state.addCurrencyBtn,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleModal: () => dispatch(actions.toggleModal()),
+    toggleModal: (val) => dispatch(actions.toggleModal(val)),
     addCurrency: (currency) => dispatch(actions.addCurrency(currency)),
     setShowMenu: (val) => dispatch(actions.setShowMenu(val)),
   };
