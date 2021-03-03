@@ -15,11 +15,15 @@ const Converter = ({
   rates,
   showMenu,
   setShowMenu,
+  getRates,
 }) => {
   const [usd, setUsd] = useState('');
   const [endCurr, setEndCurr] = useState('');
   const btnClick = useRef(false);
   useEffect(() => {
+    if (rates === null) {
+      getRates();
+    }
     if (showMenu) {
       setShowMenu(false);
     }
@@ -102,6 +106,7 @@ const mapDispatchToProps = (dispatch) => {
     toggleModal: (val) => dispatch(actions.toggleModal(val)),
     setShowMenu: (val) => dispatch(actions.setShowMenu(val)),
     changeCurrentRate: (unit) => dispatch(actions.changeCurrentRate(unit)),
+    getRates: () => dispatch(actions.getRates()),
   };
 };
 
