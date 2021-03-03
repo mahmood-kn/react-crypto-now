@@ -8,11 +8,4 @@ const Logo = ({ className, size, logo, alt }) => {
   );
 };
 
-// max-h-full
-// max-w-full
-// w-20
-// h-20
-// w-12
-// h-12
-
 export default Logo;
