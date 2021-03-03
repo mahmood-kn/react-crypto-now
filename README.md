@@ -15,3 +15,4 @@ The API : [Nomics](https://nomics.com/docs)
 Click [here](https://mahmood-kn.github.io/react-crypto-now/ 'Crypto Now') to see the live demo of this project.
 
 **Note:** If the data dosn't load just reload the page; It's because the API restrection and can serve one request per second.
+***Note:***: Make sure you don't have CORS issue.(e.g. Install CORS plugin for chrome and turn on it)
